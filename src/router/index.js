@@ -45,6 +45,11 @@ const routes = [
     path: '/index',
     name: 'home',
     component: () => import ('@/pages/index')
+  },
+  {
+    path: '/me',
+    name: 'me',
+    component: () => import ('@/pages/me/me')
   }
 ]
 const router = new Router({
