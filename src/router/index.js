@@ -50,6 +50,11 @@ const routes = [
     path: '/me',
     name: 'me',
     component: () => import ('@/pages/me/me')
+  },
+  {
+    path: '/me/order',
+    name: 'order',
+    component: () => import ('@/pages/me/order')
   }
 ]
 const router = new Router({
