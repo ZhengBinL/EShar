@@ -1,23 +1,21 @@
 <template>
     <div class="zbl">
         <div class="head">
-            <mt-header title="酒店">
-                <router-link to="/" slot="left">
-                    <mt-button icon="back"></mt-button>
-                </router-link>
-                <mt-button icon="more" slot="right"></mt-button>
-            </mt-header>
+            <!-- <v-head :title="title" :link="goLink"></v-head> -->
             <mt-swipe :auto="4000" class="w">
                 <mt-swipe-item>111111111</mt-swipe-item>
                 <mt-swipe-item>222222222</mt-swipe-item>
                 <mt-swipe-item>333333333</mt-swipe-item>
             </mt-swipe>
+            <div class="">
+                <span><i></i></span>
+            </div>
         </div>
         <div class="search">
             <mt-cell title="北京" to="/index/city" is-link class="location"></mt-cell>
             <mt-cell label="3.16今天-3.17明天" to="/index/daytime" is-link></mt-cell>
             <mt-cell label="住北京的人都在搜：王府井" to="/index/search" is-link></mt-cell>
-            <mt-cell label="价格/星级" to="/index/star" is-link></mt-cell>
+            <mt-cell label="价格/星级" is-link @click.native="handleVisible"></mt-cell>
             <div class="searchButton">
                <mt-button type="danger" size="large">开始搜索</mt-button>
             </div>
@@ -43,18 +41,65 @@
             </div>
         </div>
         <!-- <router-view></router-view> -->
+        <mt-popup v-model="popupVisible" popup-transition="popup-fade" position="bottom" class="popW">
+            <div class="showPop">
+                <div><span>价格（每晚均价）</span></div>
+                <mt-range v-model="rangeValue" :min="0" :max="2000" :step="10" :bar-height="5">
+                    <div slot="start">¥0</div>
+                    <div slot="end">¥2000+</div>
+                </mt-range>
+                <div>
+                    <div><span>星级</span></div>
+                    <div>
+                        <span v-for="item in star" :key="item.id">{{item.name}}</span>
+                    </div>
+                </div>
+                <div>
+                    <mt-button type="primary">重置</mt-button>
+                    <mt-button type="danger">完成</mt-button>
+                </div>
+            </div>
+        </mt-popup>
     </div>
 </template>
 
 <script>
 import cityItem from '../../components/cityItem'
+import vHead from '../../components/header'
 export default {
   components: {
-    'v-cityItem':cityItem
+    'v-cityItem':cityItem,
+    'v-head':vHead
   },
   data(){
       return {
-          active:'book'
+          active:'book',
+          popupVisible:false,
+          rangeValue:0,
+          title:'酒店',
+          goLink:'/',
+          star:[
+              {
+                  id:0,
+                  name:"不限"
+              },
+              {
+                  id:1,
+                  name:"二星/经济"
+              },
+              {
+                  id:2,
+                  name:"三星/舒适"
+              },
+              {
+                  id:3,
+                  name:"四星/高档"
+              },
+              {
+                  id:4,
+                  name:"五星/豪华"
+              },
+          ]
       }
 
   },
@@ -63,6 +108,9 @@ export default {
         debugger
         this.$router.push({ name: 'city' });
     },
+    handleVisible(){
+        this.popupVisible = true;
+    }
   }
 };
 </script>
@@ -107,5 +155,11 @@ overflow: hidden;
     height: 40px;
     border-radius: 20px;
 }
-
+.popW{
+    width: 100%;
+}
+.showPop{
+    width: 100%;
+    height: 200px;
+}
 </style>

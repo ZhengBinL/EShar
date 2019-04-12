@@ -2,7 +2,6 @@
     <div>
         <mt-tab-container v-model="active">
             <mt-tab-container-item id="book">
-                <!-- <mt-cell title="酒店预定"></mt-cell> -->
                 <v-book></v-book>
             </mt-tab-container-item>
             <mt-tab-container-item id="life">
@@ -25,7 +24,6 @@
                 </mt-tab-item>
             </mt-tabbar>
         </div>
-        <!-- <router-view></router-view> -->
     </div>
 </template>
 
