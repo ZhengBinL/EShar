@@ -8,7 +8,8 @@
                 <mt-cell title="e享生活"></mt-cell>
             </mt-tab-container-item>
             <mt-tab-container-item id="me">
-                <mt-cell title="我的"></mt-cell>
+                <!--<mt-cell title="我的"></mt-cell>-->
+              <v-me></v-me>
             </mt-tab-container-item>
         </mt-tab-container>
         <div class="foot">
@@ -29,9 +30,11 @@
 
 <script>
 import Book from './home/home'
+import Me from './me/me'
 export default {
     components:{
-        'v-book':Book
+        'v-book':Book,
+      'v-me':Me
     },
     data(){
       return {

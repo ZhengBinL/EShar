@@ -45,6 +45,16 @@ const routes = [
     path: '/index',
     name: 'home',
     component: () => import ('@/pages/index')
+  },
+  {
+    path: '/me',
+    name: 'me',
+    component: () => import ('@/pages/me/me')
+  },
+  {
+    path: '/me/order',
+    name: 'order',
+    component: () => import ('@/pages/me/order')
   }
 ]
 const router = new Router({
