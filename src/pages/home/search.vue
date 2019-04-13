@@ -150,7 +150,6 @@
     justify-content: space-between;
     padding: 0 10px 10px;
     border-bottom: 1px solid #d3d3d3;
-  ;
   }
 
   .pr5 {
