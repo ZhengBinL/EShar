@@ -17,7 +17,7 @@
         <!-- tab-container -->
         <mt-tab-container v-model="selected">
             <mt-tab-container-item id="1">
-                <mt-popup v-model="popupVisible"   :modal="Tflag" popup-transition="popup-fade" class="popW">
+                <mt-popup v-model="popupVisible"   :modal="popupVisible" popup-transition="popup-fade" class="popW">
                     <div class="showPop">
                         <div class='tit'><span>品牌</span></div>
                         <div class="show-item" v-for="item in chain" :key="item.id">
@@ -37,7 +37,7 @@
                 </mt-popup>
             </mt-tab-container-item>
             <mt-tab-container-item id="2">
-                <mt-popup v-model="popupVisible1"  :modal="Tflag" popup-transition="popup-fade" class="popW">
+                <mt-popup v-model="popupVisible1"  :modal="popupVisible1" popup-transition="popup-fade" class="popW">
                     <div class="showPop">
                         <mt-cell v-for="item in distance"  :key="item.id" :title="item.score+'以内'" />
                         <div>
@@ -49,7 +49,7 @@
             </mt-tab-container-item>
             <mt-tab-container-item id="3">
                 <!-- <mt-cell v-for="n in 6"  :key="n.id" :title="'选项 ' + n" /> -->
-                <mt-popup v-model="popupVisible" :modal="Tflag" popup-transition="popup-fade" class="popW">
+                <mt-popup v-model="popupVisible2" :modal="popupVisible2" popup-transition="popup-fade" class="popW">
                     <div class="showPop">
                         <div><span>价格（每晚均价）</span></div>
                         <mt-range v-model="rangeValue" :min="0" :max="2000" :step="10" :bar-height="5">
@@ -86,6 +86,7 @@ export default {
         return{
             popupVisible:true,
             popupVisible1:true,
+            popupVisible2:true,
             rangeValue:0,
             title:"请选择酒店",
             link:"/",
@@ -190,7 +191,6 @@ export default {
                     id:6
                 }
             ],
-            Tflag:false,
              star:[
               {
                   id:0,
@@ -213,7 +213,7 @@ export default {
                   name:"五星/豪华"
               },
           ],
-            sortArr:['4.5分及以上','优惠促销','双床','大床','含早餐','信用住','免费取消','闪电确认','终点房','已收藏']
+        sortArr:['4.5分及以上','优惠促销','双床','大床','含早餐','信用住','免费取消','闪电确认','终点房','已收藏']
         }
     },
     methods:{
