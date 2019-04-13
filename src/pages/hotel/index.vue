@@ -1,17 +1,17 @@
 <template>
-    <div>
+    <div class='hotel'>
         <mt-header :title="title">
             <router-link :to="link" slot="left">
                 <mt-button icon="back"></mt-button>
             </router-link>
             <mt-button icon="more" slot="right"></mt-button>
-        </mt-header> 
+        </mt-header>
 
-        <mt-navbar v-model="selected">
-            <mt-tab-item id="1">综合筛选</mt-tab-item>
-            <mt-tab-item id="2">位置区域</mt-tab-item>
-            <mt-tab-item id="3">价格/星级</mt-tab-item>
-            <mt-tab-item id="4">智能排序</mt-tab-item>
+        <mt-navbar class="select-nav" v-model="selected">
+            <mt-tab-item id="1">综合筛选<span class="iconfont icon-character"></span></mt-tab-item>
+            <mt-tab-item id="2">位置区域<span class="iconfont icon-character"></span></mt-tab-item>
+            <mt-tab-item id="3">价格/星级<span class="iconfont icon-character"></span></mt-tab-item>
+            <mt-tab-item id="4">智能排序<span class="iconfont icon-character"></span></mt-tab-item>
         </mt-navbar>
 
         <!-- tab-container -->
@@ -19,21 +19,21 @@
             <mt-tab-container-item id="1">
                 <mt-popup v-model="popupVisible"   :modal="Tflag" popup-transition="popup-fade" class="popW">
                     <div class="showPop">
-                        <div><span>品牌</span></div>
-                        <div v-for="item in chain" :key="item.id">
-                            <div>
+                        <div class='tit'><span>品牌</span></div>
+                        <div class="show-item" v-for="item in chain" :key="item.id">
+                            <div class="item-tit">
                                 <span>{{item.title}}</span>
                             </div>
-                            <div>
+                            <div class="item-info">
                                 <span v-for="item in item.name" :key="item.id">{{item.name}}</span>
                             </div>
                         </div>
-                        <div>
+                        <div class="btns">
                             <mt-button type="primary">清空</mt-button>
                             <mt-button type="danger">确定</mt-button>
                         </div>
                     </div>
-                    
+
                 </mt-popup>
             </mt-tab-container-item>
             <mt-tab-container-item id="2">
@@ -223,8 +223,12 @@ export default {
 }
 </script>
 
-
-<style scoped>
+<style>
+  .hotel .mint-tab-item-label{
+    font-size: 13px;
+  }
+</style>
+<style scoped lang='scss'>
 .condition{
     width: 650px;
     overflow-x: hidden;
@@ -241,5 +245,42 @@ export default {
 .showPop{
     width: 100%;
     height: 200px;
+  .tit{
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    padding: 0 10px;
+  }
+  .show-item{
+    border-top: 1px solid #eee;
+    margin-left: 10px;
+    .item-tit{
+      font-size: 14px;
+      color: #838383;
+      padding: 10px 0;
+    }
+    .item-info{
+      padding-bottom: 10px;
+      span{
+        display: inline-block;
+        width: 31.5%;
+        background: #fbfbfb;
+        color: #333;
+        text-align: center;
+        padding: 10px 0;
+        border-radius: 5px;
+        margin:0 5px 10px 0;
+
+      }
+    }
+    .btns{
+      padding: 0 10px;
+    }
+  }
 }
+  .select-nav{
+    span{
+      margin-left: 5px;
+    }
+  }
 </style>
