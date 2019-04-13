@@ -249,7 +249,6 @@
         //     default:
         //         break;
         // }
-
         console.log(this.selected)
         if(this.selected=='1'){
           this.popupVisible=true;
