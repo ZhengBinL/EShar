@@ -88,6 +88,44 @@
 </script>
 
 <style scoped>
+.searchIndex{
+    height: 100%;
+}
+.search{
+    height: 50px;
+}
+.allBg{
+    background-color: #d3d3d3;
+    height: 100%;
+}
+.show{
+    padding:10px;
+    margin:10px;
+    background-color: #ffffff;
+}
+.show+.show{
+ padding-top:10px;
+}
+.show .title{
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    line-height: 30px;
+}
+.pr5{
+    padding-right: 5px;
+}
+.content{
+    padding-top: 10px;
+}
+.spanBorder{
+    border:1px solid #d3d3d3;
+    padding:5px 10px;
+    display:inline-block;
+    width:18%;
+    height: 30px;
+    overflow: hidden;
+}
   .search-container {
     background: #eee;
     height: 100%;
