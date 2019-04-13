@@ -22,22 +22,22 @@ const routes = [
     redirect:'/index'
   },
   {
-    path: '/index/city', 
+    path: '/index/city',
     name: 'city',
     component: () => import ('@/pages/home/city')
   },
   {
-    path: '/index/daytime', 
+    path: '/index/daytime',
     name: 'daytime',
     component: () => import ('@/pages/home/daytime')
   },
   {
-    path: '/index/search', 
+    path: '/index/search',
     name: 'search',
     component: () => import ('@/pages/home/search')
   },
   {
-    path: '/index/star', 
+    path: '/index/star',
     name: 'star',
     component: () => import ('@/pages/home/star')
   },
@@ -55,6 +55,11 @@ const routes = [
     path: '/me/order',
     name: 'order',
     component: () => import ('@/pages/me/order')
+  },
+  {
+    path: '/me/order/detail',
+    name: 'detail',
+    component: () => import ('@/pages/me/orderDetail')
   }
 ]
 const router = new Router({

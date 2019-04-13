@@ -89,7 +89,7 @@ import editContainer from './meEditContainer'
         // 更换头像
         actionSheet: function(){
           // 打开action sheet
-          this.sheetVisible = true;
+          this.isShowChangeHeader = true;
         },
         getCamera: function(){
           console.log("打开照相机")
