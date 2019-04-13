@@ -1,5 +1,5 @@
 <template>
-    <div class="search">
+    <div class="searchIndex">
         <div class="head">
             <mt-header title="搜索">
                 <router-link to="/" slot="left">
@@ -8,36 +8,39 @@
                 <mt-button icon="more" slot="right"></mt-button>
             </mt-header>
         </div>
-        <div class="search">
-            <mt-search v-model="value" cancel-text="取消" placeholder="中文/拼音/首字母" autofocus :result="filterResult">
-            </mt-search>
+        <div class="allBg">
+            <div class="search">
+                <mt-search v-model="value" cancel-text="取消" placeholder="中文/拼音/首字母" autofocus :result="filterResult">
+                </mt-search>
+            </div>
+            <div class="show">
+                <div class="title">
+                    <div>
+                        <i class="iconfont icon-shijian pr5 red"></i><span>搜索历史</span>
+                    </div>
+                    <div>
+                        <i class="iconfont icon-shanchu pr5"></i><span>清空</span>
+                    </div>
+                </div>
+                <div class="content">
+                    <span v-for="item in history" :key="item.id" class="spanBorder">{{item.name}}</span>
+                </div>
+            </div>
+            <div class="show">
+                <div class="title">
+                    <div>
+                        <i class="iconfont icon-chengshi pr5 red"></i><span>热门品牌</span>
+                    </div>
+                    <div>
+                        <i class="iconfont icon-xiajiantou">--</i>
+                    </div>
+                </div>
+                <div class="content">
+                    <span v-for="item in history" :key="item.id" class="spanBorder">{{item.name}}</span>
+                </div>
+            </div>
         </div>
-        <div class="show">
-            <div class="title">
-                <div>
-                    <i class="iconfont icon-shijian pr5"></i><span>搜索历史</span>
-                </div>
-                <div>
-                    <i class="iconfont icon-shanchu pr5"></i><span>清空</span>
-                </div>
-            </div>
-            <div class="content">
-                <span v-for="item in history" :key="item.id" class="spanBorder">{{item.name}}</span>
-            </div>
-        </div>
-        <div class="show">
-            <div class="title">
-                <div>
-                    <i class="iconfont icon-chengshi pr5"></i><span>热门品牌</span>
-                </div>
-                <div>
-                    <i class="iconfont">--</i>
-                </div>
-            </div>
-            <div class="content">
-                <span v-for="item in history" :key="item.id" class="spanBorder">{{item.name}}</span>
-            </div>
-        </div>
+
     </div>
 </template>
 
@@ -88,12 +91,20 @@ export default {
 </script>
 
 <style scoped>
+.searchIndex{
+    height: 100%;
+}
 .search{
     height: 50px;
 }
+.allBg{
+    background-color: #d3d3d3;
+    height: 100%;
+}
 .show{
-    padding:0 10px;
-    margin-top:10px;
+    padding:10px;
+    margin:10px;
+    background-color: #ffffff;
 }
 .show+.show{
  padding-top:10px;
@@ -101,12 +112,14 @@ export default {
 .show .title{
     display: flex;
     justify-content: space-between;
+    height: 30px;
+    line-height: 30px;
 }
 .pr5{
     padding-right: 5px;
 }
 .content{
-    padding-top: 20px;
+    padding-top: 10px;
 }
 .spanBorder{
     border:1px solid #d3d3d3;

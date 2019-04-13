@@ -12,8 +12,19 @@
             </div>
         </div>
         <div class="search">
-            <mt-cell title="北京" to="/index/city" is-link class="location"></mt-cell>
-            <mt-cell label="3.16今天-3.17明天" to="/index/daytime" is-link></mt-cell>
+            <div class="local">
+                <div class="localLeft">
+                    <mt-cell title="北京" to="/index/city" is-link>
+                    </mt-cell>
+                </div>
+                <div class="localRight">
+                    <span class="iconfont icon-dingwei"></span>
+                    <span>我的附近</span>
+                </div>
+            </div>
+            <mt-cell to="/index/daytime" is-link>
+                <div class="fontSize">3.16今天-<span class="minBorder">1晚</span>- 3.17明天</div>
+            </mt-cell>
             <mt-cell label="住北京的人都在搜：王府井" to="/index/search" is-link></mt-cell>
             <mt-cell label="价格/星级" is-link @click.native="handleVisible"></mt-cell>
             <div class="searchButton">
@@ -164,5 +175,39 @@ overflow: hidden;
 .showPop{
     width: 100%;
     height: 200px;
+}
+
+.Htitle{
+    padding-left: 5px;
+    border-left: 5px solid yellow;
+    padding-bottom:10px;
+}
+
+.local{
+    display: flex;
+}
+.local .localLeft{
+    flex:4
+}
+.local .localRight{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    
+}
+.minBorder{
+    font-size: 12px;
+    display: inline-block;
+    width: 30px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    border-radius: 10px;
+    border:1px solid #d3d3d3;
+}
+.fontSize{
+    width: 650px;
+    font-size: 12px;
 }
 </style>
