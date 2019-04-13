@@ -17,7 +17,7 @@
             <mt-cell label="住北京的人都在搜：王府井" to="/index/search" is-link></mt-cell>
             <mt-cell label="价格/星级" is-link @click.native="handleVisible"></mt-cell>
             <div class="searchButton">
-               <mt-button type="danger" size="large">开始搜索</mt-button>
+               <mt-button type="danger" size="large" @click.native="handleGosearch">开始搜索</mt-button>
             </div>
         </div>
         <div class="content">
@@ -110,6 +110,9 @@ export default {
     },
     handleVisible(){
         this.popupVisible = true;
+    },
+    handleGosearch(){
+        this.$router.push({ name: 'hotel' });
     }
   }
 };

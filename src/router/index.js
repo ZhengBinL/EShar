@@ -55,7 +55,12 @@ const routes = [
     path: '/me/order',
     name: 'order',
     component: () => import ('@/pages/me/order')
-  }
+  },
+  {
+    path: '/hotel',
+    name: 'hotel',
+    component: () => import ('@/pages/hotel/index')
+  },
 ]
 const router = new Router({
   routes
