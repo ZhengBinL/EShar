@@ -20,6 +20,7 @@
         <mt-popup
           v-model="popupVisible"
           :modal="popupVisible"
+          :closeOnClickModal="Tflag"
           popup-transition="popup-fade">
           <div class="showPop">
             <div class='tit'><span>品牌</span></div>
@@ -42,6 +43,7 @@
         <mt-popup
           v-model="popupVisible1"
           :modal="popupVisible1"
+          :closeOnClickModal="Tflag"
           popup-transition="popup-fade">
           <div class="showPop">
             <mt-cell v-for="item in distance" :key="item.id" :title="item.score+'以内'"/>
@@ -56,6 +58,7 @@
         <mt-popup
           v-model="popupVisible2"
           :modal="popupVisible2"
+          :closeOnClickModal="Tflag"
           popup-transition="popup-fade">
           <div class="showPop">
             <div class="star-tit"><span>价格（每晚均价）</span></div>
@@ -97,6 +100,7 @@
         popupVisible: true,
         popupVisible1: false,
         popupVisible2: false,
+
         rangeValue: 0,
         title: "请选择酒店",
         link: "/",
@@ -261,6 +265,10 @@
           this.popupVisible1=false;
           this.popupVisible2=true;
         }
+        // switch (this.selected){
+        //   case '1':
+        //
+        // }
       }
     }
 
