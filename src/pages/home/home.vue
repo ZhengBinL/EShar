@@ -94,6 +94,7 @@ export default {
           rangeValue:0,
           title:'酒店',
           goLink:'/',
+          loading:true,
           cityArry:[
               {
                 id:1,
@@ -170,6 +171,16 @@ export default {
     },
     handleGosearch(){
         this.$router.push({ name: 'hotel' });
+    },
+    loadMore() {
+        this.loading = true;
+        // setTimeout(() => {
+        //     let last = this.list[this.list.length - 1];
+        //     for (let i = 1; i <= 10; i++) {
+        //     this.list.push(last + i);
+        //     }
+        //     this.loading = false;
+        // }, 2500);
     }
   }
 };

@@ -58,36 +58,33 @@
           :modal="popupVisible2"
           popup-transition="popup-fade">
           <div class="showPop">
-            <div><span>价格（每晚均价）</span></div>
-            <mt-range v-model="rangeValue" :min="0" :max="2000" :step="10" :bar-height="5">
-              <div slot="start">¥0</div>
-              <div slot="end">¥2000+</div>
+            <div class="star-tit"><span>价格（每晚均价）</span></div>
+            <mt-range class="rang-cont" v-model="rangeValue" :min="0" :max="2000" :step="10" :bar-height="5">
+              <div class="rang-num min-num" slot="start">¥0</div>
+              <div class="rang-num max-num" slot="end">¥2000+</div>
             </mt-range>
             <div>
-              <div><span>星级</span></div>
-              <div>
-                <span v-for="item in star" :key="item.id">{{item.name}}</span>
+              <div class="star-tit"><span>星级</span></div>
+              <div class="level">
+                <span :class="index==0?'active':''" v-for="(item,index) in star" :key="item.id">{{item.name}}</span>
               </div>
             </div>
-            <div>
-              <mt-button type="primary">重置</mt-button>
-              <mt-button type="danger">完成</mt-button>
+            <div class="btns">
+              <button class="clear-btn">清空</button>
+              <button class="sure-btn">确定</button>
             </div>
           </div>
         </mt-popup>
       </mt-tab-container-item>
       <mt-tab-container-item id="4">
-        <mt-popup
-          v-model="popupVisible3"
-          :modal="popupVisible3"
-          popup-transition="popup-fade">
           <div class="showPop">
             <div class="condition">
+              <div class="condition-cont">
               <span v-for="item in sortArr" :key="item">{{item}}</span>
+              </div>
             </div>
-            <mt-cell v-for="n in 6" :key="n.id" :title="'智能排序 ' + n"/>
+            <!--<mt-cell v-for="n in 6" :key="n.id" :title="'智能排序 ' + n"/>-->
           </div>
-        </mt-popup>
       </mt-tab-container-item>
     </mt-tab-container>
   </div>
@@ -100,11 +97,10 @@
         popupVisible: true,
         popupVisible1: false,
         popupVisible2: false,
-        popupVisible3: false,
         rangeValue: 0,
         title: "请选择酒店",
         link: "/",
-        selected: '1',
+        selected: '4',
         chain: [
           {
             title: '高端连锁',
@@ -265,18 +261,23 @@
     font-size: 13px;
   }
 
-  .mint-popup {
+  .hotel  .mint-popup {
     width: 100%;
-    position: fixed;
+    position: absolute;
     background: #fff;
-    top: 90px;
+    top: 0;
     left: 0;
     transform: translate(0, 0);
     backface-visibility: hidden;
     transition: .2s ease-out;
   }
+  .hotel   .mint-cell-wrapper{
+    background-image: none;
+    border-bottom: 1px solid #d9d9d9;
+  }
 </style>
 <style scoped lang='scss'>
+
   .hotel {
     height: 100%;
     .header {
@@ -296,11 +297,22 @@
 
   .condition {
     width: 650px;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    height: 30px;
-    line-height: 30px;
-
+    overflow: hidden;
+    .condition-cont{
+      white-space: nowrap;
+      overflow-y: auto;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      span{
+        display: inline-block;
+        padding: 5px 15px;
+        margin-right: 5px;
+        background: #fbfbfb;
+        border-radius: 20px;
+        color: #333;
+      }
+    }
   }
 
   .showPop {
@@ -312,11 +324,54 @@
       font-size: 18px;
       color: #333;
       font-weight: bold;
-      padding: 0 10px;
+      padding: 10px;
+    }
+    .star-tit{
+      font-size: 14px;
+      color: #999;
+      margin-bottom: 15px;
+      margin-left: 3px;
+    }
+    .rang-cont{
+      margin: 30px auto 0;
+      width: 90%;
+      .rang-num{
+        position: absolute;
+        top: -30px;
+        &.min-num{
+          left: -10px;
+        }
+        &.max-num{
+          right: -10px;
+        }
+      }
+    }
+    .level{
+      span{
+        display: inline-block;
+        width: 23%;
+        margin: 3px;
+        line-height: 30px;
+        justify-content: center;
+        align-items: center;
+        background-color: #f6f6f6;
+        border-radius: 5px;
+        box-sizing: border-box;
+        color: #333;
+        font-size: 13px;
+        padding: 5px 0;
+        text-align: center;
+        overflow: hidden;
+        &.active{
+          background-color: #fff7d4;
+          color: #fca500;
+        }
+      }
     }
     .show-item {
       border-top: 1px solid #eee;
       margin-left: 10px;
+
       .item-tit {
         font-size: 14px;
         color: #838383;
