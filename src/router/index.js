@@ -60,7 +60,12 @@ const routes = [
     path: '/me/order/detail',
     name: 'detail',
     component: () => import ('@/pages/me/orderDetail')
-  }
+  },
+  {
+    path: '/hotel',
+    name: 'hotel',
+    component: () => import ('@/pages/hotel/index')
+  },
 ]
 const router = new Router({
   routes

@@ -8,12 +8,32 @@
                 <mt-button icon="more" slot="right"></mt-button>
             </mt-header>
         </div>
+      <div>
+        <calendar :range="calendar2.range" :lunar="calendar2.lunar" :value="calendar2.value" :begin="calendar2.begin" :end="calendar2.end" @select="calendar2.select"></calendar>
+      </div>
     </div>
 </template>
 
 <script>
+  import calendar from '../../components/calendar/calendar'
 export default {
-    
+    components:{
+      calendar
+    },
+  data(){
+      return{
+        calendar2:{
+          range:true,
+          value:[[2017,12,1],[2019,2,16]], //默认日期
+          lunar:true, //显示农历
+          begin:[2017,2,16], //可选开始日期
+          end:[2019,2,16], //可选结束日期
+          select(begin,end){
+            // console.log(begin.toString(),end.toString());
+          }
+        }
+      }
+  }
 }
 </script>
 
