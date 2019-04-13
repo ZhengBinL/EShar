@@ -48,7 +48,12 @@
             </div>
             <div class="hotel">
                 <div class="Htitle">猜你喜欢</div>
-                <v-cityItem ></v-cityItem>
+                <ul v-infinite-scroll="loadMore" infinite-scroll-disabled="loading"
+                    infinite-scroll-distance="10">
+                    <li v-for="item in cityArry" :key="item">
+                        <v-cityItem :cityItem="item"></v-cityItem>
+                    </li>
+                </ul>
             </div>
         </div>
         <!-- <router-view></router-view> -->
@@ -89,6 +94,47 @@ export default {
           rangeValue:0,
           title:'酒店',
           goLink:'/',
+          cityArry:[
+              {
+                id:1,
+                imgLink:'../assets/img/BJ.jpg',
+                hotelName:'大同浩海国际酒店',
+                hotelType:'高档型',
+                hotelScore:'4.7',
+                hotelEvaluate:'非常好',
+                reviewScore:'486',
+                bookTime:'2',
+                bookFlage:'1',
+                oldPrice:126,
+                newPrice:124,
+            },
+            {
+                id:2,
+                imgLink:'../assets/img/BJ.jpg',
+                hotelName:'大同浩海国际酒店',
+                hotelType:'高档型',
+                hotelScore:'4.7',
+                hotelEvaluate:'非常好',
+                reviewScore:'486',
+                bookTime:'2',
+                bookFlage:'1',
+                oldPrice:126,
+                newPrice:124,
+            },
+            {
+                id:3,
+                imgLink:'../assets/img/BJ.jpg',
+                hotelName:'大同浩海国际酒店',
+                hotelType:'高档型',
+                hotelScore:'4.7',
+                hotelEvaluate:'非常好',
+                reviewScore:'486',
+                bookTime:'2',
+                bookFlage:'1',
+                oldPrice:126,
+                newPrice:124,
+            }
+          ],
           star:[
               {
                   id:0,
