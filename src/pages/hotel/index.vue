@@ -265,10 +265,6 @@
           this.popupVisible1=false;
           this.popupVisible2=true;
         }
-        // switch (this.selected){
-        //   case '1':
-        //
-        // }
       }
     }
 
