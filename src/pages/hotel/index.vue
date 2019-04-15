@@ -4,14 +4,13 @@
       <router-link :to="link" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
-      <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
 
     <mt-navbar class="select-nav" v-model="selected" @click.native.prevent="clickItem">
-      <mt-tab-item id="1">综合筛选<span class="iconfont icon-character"></span></mt-tab-item>
-      <mt-tab-item id="2">位置区域<span class="iconfont icon-character"></span></mt-tab-item>
-      <mt-tab-item id="3">价格/星级<span class="iconfont icon-character"></span></mt-tab-item>
-      <mt-tab-item id="4">智能排序<span class="iconfont icon-character"></span></mt-tab-item>
+      <mt-tab-item id="1">综合筛选<span class="iconfont " :class="selected==1?'icon-shangjiantou':'icon-xiajiantou'"></span></mt-tab-item>
+      <mt-tab-item id="2">位置区域<span class="iconfont " :class="selected==2?'icon-shangjiantou':'icon-xiajiantou'"></span></mt-tab-item>
+      <mt-tab-item id="3">价格/星级<span class="iconfont " :class="selected==3?'icon-shangjiantou':'icon-xiajiantou'" ></span></mt-tab-item>
+      <mt-tab-item id="4">智能排序<span class="iconfont " :class="selected==4?'icon-shangjiantou':'icon-xiajiantou'"></span></mt-tab-item>
     </mt-navbar>
 
     <!-- tab-container -->
