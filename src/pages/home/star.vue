@@ -1,21 +1,22 @@
 <template>
     <div>
-        <mt-popup v-model="starFlag" popup-transition="popup-fade" position="bottom" class="popW">
+        <mt-popup v-model="starFlag" popup-transition="popup-fade" position="bottom" class="popW" closeOnClickModal="modelFlag">
             <div class="showPop">
                 <div class="tit"><span>价格（每晚均价）</span></div>
                 <mt-range class="rang-cont" v-model="rangeValue" :min="0" :max="2000" :step="10" :bar-height="5">
-                    <div class="rang-num min-num" slot="start">¥0</div>
+                    <div class="rang-num min-num" slot="start">¥{{rangeValue==0?'0':rangeValue}}</div>
                     <div class="rang-num max-num" slot="end">¥2000+</div>
                 </mt-range>
+                
                 <div>
                     <div class="tit"><span>星级</span></div>
                     <div class="level">
-                        <span :class="index==0?'active':''" v-for="(item,index) in star" :key="item.id">{{item.name}}</span>
+                        <span :class="item.id==actionFlag?'active':''" v-for="item in star" :key="item.id" @click="checkAction(item)">{{item.name}}</span>
                     </div>
                 </div>
                 <div class="btns">
-                    <mt-button class="btn reset" type="primary">重置</mt-button>
-                    <mt-button class="btn over" type="danger">完成</mt-button>
+                    <mt-button class="btn reset"  @click.native="handleReset">重置</mt-button>
+                    <mt-button class="btn over" @click.native="handleOver">完成</mt-button>
                 </div>
             </div>
         </mt-popup>
@@ -29,13 +30,12 @@ export default {
             type:Boolean,
             default:false
         },
-        rangeValue:{
-            type:Number,
-            default:0
-        }
     },
     data(){
         return {
+            rangeValue:0,
+            actionFlag:0,
+            modelFlag:false,
             star: [
                 {
                 id: 0,
@@ -58,6 +58,23 @@ export default {
                 name: "五星/豪华"
                 }
             ]
+        }
+    },
+    methods:{
+        //切换星级状态
+        checkAction(item){
+            this.actionFlag = item.id
+        },
+        //重置
+        handleReset(){
+            this.actionFlag = 0;
+            this.rangeValue = 0;
+        },
+        //完成
+        handleOver(){
+            console.log(this.actionFlag,'this.actionFlag')
+            console.log(this.rangeValue,'this.rangeValue')
+            this.$emit('switchStar')
         }
     }
 

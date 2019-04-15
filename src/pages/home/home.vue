@@ -68,7 +68,7 @@
 
 <script>
 import cityItem from "../../components/cityItem";
-import vHead from "../../components/header";
+// import vHead from "../../components/header";
 import vCity from "./city";
 import vStar from "./star";
 import vDaytime from './daytime'
@@ -76,7 +76,7 @@ import vSearch from './search'
 export default {
   components: {
     "v-cityItem": cityItem,
-    "v-head": vHead,
+    // "v-head": vHead,
     "v-city":vCity,
     "v-star":vStar,
     "v-daytime":vDaytime,
@@ -171,7 +171,7 @@ export default {
     },
     //选择价格星级切换
     switchStarFlag(){
-        this.popupVisible = true;
+        this.starFlag = !this.starFlag;
     }
   }
 };
