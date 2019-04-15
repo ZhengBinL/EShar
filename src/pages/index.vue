@@ -18,7 +18,7 @@
                     酒店预定
                 </mt-tab-item>
                 <mt-tab-item @click.native.prevent="active = 'life'" id="life">
-                    e享生活
+                    E享生活
                 </mt-tab-item>
                 <mt-tab-item @click.native.prevent="active = 'me'" id="me">
                     我的
