@@ -89,20 +89,28 @@
           </div>
       </mt-tab-container-item>
     </mt-tab-container>
-    <div>
-      
-    </div>
+
+    <ul v-infinite-scroll="loadMore" infinite-scroll-disabled="loading"
+        infinite-scroll-distance="10">
+        <li v-for="item in cityArry" :key="item.id">
+            <v-cityItem :cityItem="item"></v-cityItem>
+        </li>
+    </ul>
   </div>
 </template>
 
 <script>
+import cityItem from "../../components/cityItem";
   export default {
+    components:{
+      'v-cityItem':cityItem
+    },
     data() {
       return {
         popupVisible: true,
         popupVisible1: false,
         popupVisible2: false,
-
+        loading:true,
         rangeValue: 0,
         title: "请选择酒店",
         link: "/",
@@ -230,7 +238,48 @@
             name: "五星/豪华"
           },
         ],
-        sortArr: ['4.5分及以上', '优惠促销', '双床', '大床', '含早餐', '信用住', '免费取消', '闪电确认', '终点房', '已收藏']
+        sortArr: ['4.5分及以上', '优惠促销', '双床', '大床', '含早餐', '信用住', '免费取消', '闪电确认', '终点房', '已收藏'],
+        cityArry: [
+          {
+            id: 1,
+            imgLink: "../assets/img/BJ.jpg",
+            hotelName: "大同浩海国际酒店",
+            hotelType: "高档型",
+            hotelScore: "4.7",
+            hotelEvaluate: "非常好",
+            reviewScore: "486",
+            bookTime: "2",
+            bookFlage: "1",
+            oldPrice: 126,
+            newPrice: 124
+          },
+          {
+            id: 2,
+            imgLink: "../assets/img/BJ.jpg",
+            hotelName: "大同浩海国际酒店",
+            hotelType: "高档型",
+            hotelScore: "4.7",
+            hotelEvaluate: "非常好",
+            reviewScore: "486",
+            bookTime: "2",
+            bookFlage: "1",
+            oldPrice: 126,
+            newPrice: 124
+          },
+          {
+            id: 3,
+            imgLink: "../assets/img/BJ.jpg",
+            hotelName: "大同浩海国际酒店",
+            hotelType: "高档型",
+            hotelScore: "4.7",
+            hotelEvaluate: "非常好",
+            reviewScore: "486",
+            bookTime: "2",
+            bookFlage: "1",
+            oldPrice: 126,
+            newPrice: 124
+          }
+        ],
       }
     },
     methods: {
@@ -250,7 +299,17 @@
           this.popupVisible1=false;
           this.popupVisible2=true;
         }
-      }
+      },
+      loadMore() {
+        this.loading = true;
+        // setTimeout(() => {
+        //     let last = this.list[this.list.length - 1];
+        //     for (let i = 1; i <= 10; i++) {
+        //     this.list.push(last + i);
+        //     }
+        //     this.loading = false;
+        // }, 2500);
+      },
     }
 
   }
@@ -291,7 +350,7 @@
   }
 
   .tab-cont {
-    height: 100%;
+    // height: 100%;
     position: relative;
   }
 
