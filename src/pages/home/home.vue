@@ -13,7 +13,7 @@
         <div class="search">
             <div class="local">
                 <div class="localLeft">
-                    <mt-cell title="北京" is-link @click.native="switchCityFlag">
+                    <mt-cell :title="titleCity?titleCity:'北京'" is-link @click.native="switchCityFlag">
                     </mt-cell>
                 </div>
                 <div class="localRight">
@@ -90,6 +90,7 @@ export default {
       dayFlag:false,
       titleSearch:'',
       titlePN:'',
+      titleCity:'',
       active: "book",
       popupVisible: false,
       rangeValue: 0,
@@ -160,6 +161,7 @@ export default {
     //选择城市切换
     switchCityFlag(item){
         console.log(item)
+        item.title&&(this.titleCity = item.title);
         this.cityFlag = !this.cityFlag;
     },
     //选择日期切换
