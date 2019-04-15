@@ -31,7 +31,7 @@
             <i class="iconfont icon-chengshi pr5"></i><span>热门品牌</span>
           </div>
           <div @click="checkUp">
-            <i class="iconfont">--</i>
+            <i class="iconfont" :class="checkShow?'icon-xiajiantou':'icon-shangjiantou'"></i>
           </div>
         </div>
         <div class="content" v-show="checkShow">
