@@ -3,7 +3,9 @@
     <mt-popup v-model="searchFlag" position="right" class="search-container">
       <div class="head">
         <mt-header title="搜索">
-          <mt-button icon="back"  @click.native="goBack" slot="left"></mt-button>
+          <!-- <div @click="goBack" slot="left"> -->
+            <mt-button icon="back" @click="goBack" slot="left"></mt-button>
+          <!-- </div> -->
         </mt-header>
       </div>
       <div class="search">
@@ -109,7 +111,7 @@ import { MessageBox } from 'mint-ui';
           console.log(item,'a')
           MessageBox.confirm('确定选择'+item.name+'?').then(action => {
                 this.$emit('switchSearch',{
-                    item
+                  ...item
                 })
             },()=>{
                 console.log(2)

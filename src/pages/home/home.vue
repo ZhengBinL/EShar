@@ -24,8 +24,8 @@
             <mt-cell is-link @click.native="switchDayFlag">
                 <div class="fontSize">3.16今天-<span class="minBorder">1晚</span>- 3.17明天</div>
             </mt-cell>
-            <mt-cell label="住北京的人都在搜：王府井" is-link @click.native="switchSearchFlag"></mt-cell>
-            <mt-cell label="价格/星级" is-link @click.native="switchStarFlag"></mt-cell>
+            <mt-cell :title="titleSearch" :label="titleSearch?'':'住北京的人都在搜：王府井'" is-link @click.native="switchSearchFlag"></mt-cell>
+            <mt-cell :title="titlePN" :label="titlePN?'':'价格/星级'" is-link @click.native="switchStarFlag"></mt-cell>
             <div class="searchButton">
                <mt-button type="danger" size="large" @click.native="handleGosearch">开始搜索</mt-button>
             </div>
@@ -88,6 +88,8 @@ export default {
       cityFlag:false,
       starFlag:false,
       dayFlag:false,
+      titleSearch:'',
+      titlePN:'',
       active: "book",
       popupVisible: false,
       rangeValue: 0,
@@ -166,11 +168,13 @@ export default {
     },
     //选择最热搜索切换
     switchSearchFlag(item){
-         console.log(item)
+        item&&(this.titleSearch = item.name);
         this.searchFlag = !this.searchFlag;
     },
     //选择价格星级切换
-    switchStarFlag(){
+    switchStarFlag(item){
+        console.log(item,'item')
+        item.name&&(this.titlePN = `¥${item.price}-¥2000+/${item.name}`);
         this.starFlag = !this.starFlag;
     }
   }

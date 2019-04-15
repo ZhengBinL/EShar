@@ -233,22 +233,6 @@
     },
     methods: {
       clickItem(){
-        // switch (this.selected) {
-        //     case '1':
-        //         this.popupVisible=true;
-        //         this.popupVisible1=false;
-        //         break;
-        //     case '2':
-        //         this.popupVisible=false;
-        //         this.popupVisible1=true;
-        //         break;
-        //     case '3':
-        //         this.popupVisible2=true;
-        //         this.popupVisible3=false;
-        //         break;
-        //     default:
-        //         break;
-        // }
         console.log(this.selected)
         if(this.selected=='1'){
           this.popupVisible=true;

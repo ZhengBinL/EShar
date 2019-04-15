@@ -35,6 +35,7 @@ export default {
         return {
             rangeValue:0,
             actionFlag:0,
+            actionName:'',
             modelFlag:false,
             star: [
                 {
@@ -63,7 +64,8 @@ export default {
     methods:{
         //切换星级状态
         checkAction(item){
-            this.actionFlag = item.id
+            this.actionFlag = item.id;
+            this.actionName = item.name
         },
         //重置
         handleReset(){
@@ -72,9 +74,10 @@ export default {
         },
         //完成
         handleOver(){
-            console.log(this.actionFlag,'this.actionFlag')
-            console.log(this.rangeValue,'this.rangeValue')
-            this.$emit('switchStar')
+            this.$emit('switchStar',{
+                price:this.rangeValue,
+                name:this.actionName||'星级不限'
+            })
         }
     }
 
