@@ -15,7 +15,7 @@
             <div class="HBottom">
                 <div class="red ">提前{{cityItem.bookTime}}天预订</div>
                 <div class="HBBottom">
-                    <span class="red">{{bookFlage==1?'法定节假日不可预订':'法定节假日可预订'}}</span>
+                    <span class="red">{{cityItem.bookFlage=='1'?'法定节假日不可预订':'法定节假日可预订'}}</span>
                     <div class="price">
                         <span class="oldprice">¥{{cityItem.oldPrice}}起</span>
                         <div class="nowpice">

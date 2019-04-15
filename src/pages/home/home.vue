@@ -1,7 +1,6 @@
 <template>
     <div class="zbl">
         <div class="head">
-            <!-- <v-head :title="title" :link="goLink"></v-head> -->
             <mt-swipe :auto="4000" class="w">
                 <mt-swipe-item><img src="../../assets/img/1.jpg"> </mt-swipe-item>
                 <mt-swipe-item><img src="../../assets/img/2.jpg"> </mt-swipe-item>
@@ -14,7 +13,7 @@
         <div class="search">
             <div class="local">
                 <div class="localLeft">
-                    <mt-cell title="北京" to="/index/city" is-link>
+                    <mt-cell title="北京" is-link @click.native="switchCityFlag">
                     </mt-cell>
                 </div>
                 <div class="localRight">
@@ -22,11 +21,11 @@
                     <span>我的附近</span>
                 </div>
             </div>
-            <mt-cell to="/index/daytime" is-link>
+            <mt-cell is-link @click.native="switchDayFlag">
                 <div class="fontSize">3.16今天-<span class="minBorder">1晚</span>- 3.17明天</div>
             </mt-cell>
-            <mt-cell label="住北京的人都在搜：王府井" to="/index/search" is-link></mt-cell>
-            <mt-cell label="价格/星级" is-link @click.native="handleVisible"></mt-cell>
+            <mt-cell label="住北京的人都在搜：王府井" is-link @click.native="switchSearchFlag"></mt-cell>
+            <mt-cell label="价格/星级" is-link @click.native="switchStarFlag"></mt-cell>
             <div class="searchButton">
                <mt-button type="danger" size="large" @click.native="handleGosearch">开始搜索</mt-button>
             </div>
@@ -50,288 +49,211 @@
                 <div class="Htitle">猜你喜欢</div>
                 <ul v-infinite-scroll="loadMore" infinite-scroll-disabled="loading"
                     infinite-scroll-distance="10">
-                    <li v-for="item in cityArry" :key="item">
+                    <li v-for="item in cityArry" :key="item.id">
                         <v-cityItem :cityItem="item"></v-cityItem>
                     </li>
                 </ul>
             </div>
         </div>
-        <!-- <router-view></router-view> -->
-        <mt-popup v-model="popupVisible" popup-transition="popup-fade" position="bottom" class="popW">
-            <div class="showPop">
-                <div class="tit"><span>价格（每晚均价）</span></div>
-                <mt-range class="rang-cont" v-model="rangeValue" :min="0" :max="2000" :step="10" :bar-height="5">
-                    <div class="rang-num min-num" slot="start">¥0</div>
-                    <div class="rang-num max-num" slot="end">¥2000+</div>
-                </mt-range>
-                <div>
-                    <div class="tit"><span>星级</span></div>
-                    <div class="level">
-                        <span :class="index==0?'active':''" v-for="(item,index) in star" :key="item.id">{{item.name}}</span>
-                    </div>
-                </div>
-                <div class="btns">
-                    <mt-button class="btn reset" type="primary">重置</mt-button>
-                    <mt-button class="btn over" type="danger">完成</mt-button>
-                </div>
-            </div>
-        </mt-popup>
+
+        <v-search  :searchFlag="searchFlag" @switchSearch="switchSearchFlag"></v-search>
+
+        <v-daytime :dayFlag="dayFlag" @switchDay="switchDayFlag"></v-daytime>
+
+        <v-star :starFlag="starFlag" @switchStar="switchStarFlag"></v-star>
+
+        <v-city :cityFlag="cityFlag" @switchCity="switchCityFlag"></v-city>
     </div>
 </template>
 
 <script>
-import cityItem from '../../components/cityItem'
-import vHead from '../../components/header'
+import cityItem from "../../components/cityItem";
+import vHead from "../../components/header";
+import vCity from "./city";
+import vStar from "./star";
+import vDaytime from './daytime'
+import vSearch from './search'
 export default {
   components: {
-    'v-cityItem':cityItem,
-    'v-head':vHead
+    "v-cityItem": cityItem,
+    "v-head": vHead,
+    "v-city":vCity,
+    "v-star":vStar,
+    "v-daytime":vDaytime,
+    "v-search":vSearch
   },
-  data(){
-      return {
-          active:'book',
-          popupVisible:false,
-          rangeValue:0,
-          title:'酒店',
-          goLink:'/',
-          loading:true,
-          cityArry:[
-              {
-                id:1,
-                imgLink:'../assets/img/BJ.jpg',
-                hotelName:'大同浩海国际酒店',
-                hotelType:'高档型',
-                hotelScore:'4.7',
-                hotelEvaluate:'非常好',
-                reviewScore:'486',
-                bookTime:'2',
-                bookFlage:'1',
-                oldPrice:126,
-                newPrice:124,
-            },
-            {
-                id:2,
-                imgLink:'../assets/img/BJ.jpg',
-                hotelName:'大同浩海国际酒店',
-                hotelType:'高档型',
-                hotelScore:'4.7',
-                hotelEvaluate:'非常好',
-                reviewScore:'486',
-                bookTime:'2',
-                bookFlage:'1',
-                oldPrice:126,
-                newPrice:124,
-            },
-            {
-                id:3,
-                imgLink:'../assets/img/BJ.jpg',
-                hotelName:'大同浩海国际酒店',
-                hotelType:'高档型',
-                hotelScore:'4.7',
-                hotelEvaluate:'非常好',
-                reviewScore:'486',
-                bookTime:'2',
-                bookFlage:'1',
-                oldPrice:126,
-                newPrice:124,
-            }
-          ],
-          star:[
-              {
-                  id:0,
-                  name:"不限"
-              },
-              {
-                  id:1,
-                  name:"二星/经济"
-              },
-              {
-                  id:2,
-                  name:"三星/舒适"
-              },
-              {
-                  id:3,
-                  name:"四星/高档"
-              },
-              {
-                  id:4,
-                  name:"五星/豪华"
-              },
-          ]
-      }
-
+  data() {
+    return {
+      searchFlag:false,
+      cityFlag:false,
+      starFlag:false,
+      dayFlag:false,
+      active: "book",
+      popupVisible: false,
+      rangeValue: 0,
+      title: "酒店",
+      goLink: "/",
+      loading: true,
+      cityArry: [
+        {
+          id: 1,
+          imgLink: "../assets/img/BJ.jpg",
+          hotelName: "大同浩海国际酒店",
+          hotelType: "高档型",
+          hotelScore: "4.7",
+          hotelEvaluate: "非常好",
+          reviewScore: "486",
+          bookTime: "2",
+          bookFlage: "1",
+          oldPrice: 126,
+          newPrice: 124
+        },
+        {
+          id: 2,
+          imgLink: "../assets/img/BJ.jpg",
+          hotelName: "大同浩海国际酒店",
+          hotelType: "高档型",
+          hotelScore: "4.7",
+          hotelEvaluate: "非常好",
+          reviewScore: "486",
+          bookTime: "2",
+          bookFlage: "1",
+          oldPrice: 126,
+          newPrice: 124
+        },
+        {
+          id: 3,
+          imgLink: "../assets/img/BJ.jpg",
+          hotelName: "大同浩海国际酒店",
+          hotelType: "高档型",
+          hotelScore: "4.7",
+          hotelEvaluate: "非常好",
+          reviewScore: "486",
+          bookTime: "2",
+          bookFlage: "1",
+          oldPrice: 126,
+          newPrice: 124
+        }
+      ],
+    };
   },
-  methods:{
-    handleCity(){
-        debugger
-        this.$router.push({ name: 'city' });
+  methods: {
+    handleCity() {
+      debugger;
+      this.$router.push({ name: "city" });
     },
-    handleVisible(){
-        this.popupVisible = true;
-    },
-    handleGosearch(){
-        this.$router.push({ name: 'hotel' });
+    handleGosearch() {
+      this.$router.push({ name: "hotel" });
     },
     loadMore() {
-        this.loading = true;
-        // setTimeout(() => {
-        //     let last = this.list[this.list.length - 1];
-        //     for (let i = 1; i <= 10; i++) {
-        //     this.list.push(last + i);
-        //     }
-        //     this.loading = false;
-        // }, 2500);
+      this.loading = true;
+      // setTimeout(() => {
+      //     let last = this.list[this.list.length - 1];
+      //     for (let i = 1; i <= 10; i++) {
+      //     this.list.push(last + i);
+      //     }
+      //     this.loading = false;
+      // }, 2500);
+    },
+    //选择城市切换
+    switchCityFlag(item){
+        console.log(item)
+        this.cityFlag = !this.cityFlag;
+    },
+    //选择日期切换
+    switchDayFlag(){
+        this.dayFlag = !this.dayFlag;
+    },
+    //选择最热搜索切换
+    switchSearchFlag(item){
+         console.log(item)
+        this.searchFlag = !this.searchFlag;
+    },
+    //选择价格星级切换
+    switchStarFlag(){
+        this.popupVisible = true;
     }
   }
 };
 </script>
-<style>
 
-</style>
-<style scoped>
-.zbl{
-    background-color: #d3d3d3;
-}
-
-.head{
+<style scoped lang="scss">
+.zbl {
+  background-color: #d3d3d3;
+  .head {
     background-color: #ffffff;
-}
-.head .w {
-  width: 100%;
-  height: 150px;
-  background-color: red;
-}
-
-.search{
-    padding:0 1px;
-}
-.search .searchButton{
-    padding:10px 5px;
-    background-color: #ffffff;
-}
-.search .location{
-    width: 80%;
-}
-
-.content{
-background-color: #ffffff;
-overflow: hidden;
-}
-.content .selfButton{
-    display: flex;
-    justify-content: space-between;
-    padding:10px;
-    margin-top:20px;
-}
-.content .selfButton .imgButton{
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-}
-.popW{
-    width: 100%;
-}
-.showPop{
-    width: 100%;
-  padding: 15px 9px;
-  box-sizing: border-box;
-}
-.showPop .tit{
-  font-size: 14px;
-  color: #999;
-  margin-bottom: 15px;
-  margin-left: 3px;
-}
-.rang-cont{
-  margin: 30px auto 0;
-  width: 90%;
-}
-.rang-num{
-  position: absolute;
-  top: -30px;
-}
-.rang-num.min-num{
-  left: -10px;
-}
-.rang-num.max-num{
-  right: -10px;
-}
-
-.Htitle{
-    padding-left: 5px;
-    border-left: 5px solid yellow;
-    padding-bottom:10px;
-}
-
-.local{
-    display: flex;
-}
-.local .localLeft{
-    flex:4
-}
-.local .localRight{
-    flex:1;
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
-    
-}
-.minBorder{
-    font-size: 12px;
-    display: inline-block;
-    width: 30px;
-    height: 15px;
-    line-height: 15px;
-    text-align: center;
-    border-radius: 10px;
-    border:1px solid #d3d3d3;
-}
-.fontSize{
-    width: 650px;
-    font-size: 12px;
-}
-.level span{
-  display: inline-block;
-  width: 23%;
-  margin: 3px;
-  line-height: 30px;
-  justify-content: center;
-  align-items: center;
-  background-color: #f6f6f6;
-  border-radius: 5px;
-  box-sizing: border-box;
-  color: #333;
-  font-size: 13px;
-  padding: 5px 0;
-  text-align: center;
-  overflow: hidden;
-}
-.level span.active{
-  background-color: #fff7d4;
-  color: #fca500;
-}
-.btns{
-  display: flex;
-  justify-content: space-between;
-}
-.btns .btn{
-  width: 50%;
-  background: #fff;
-  color: #333;
-  font-size: 14px;
-}
-.btns .btn.reset{
-  color: #ffc900;
-}
-.btns .btn.over{
-  background: #ffc900;
-}
-  .Htitle{
-    margin: 10px;
-    border-left: 3px solid yellow;
-    padding-left: 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
+    .w {
+        width: 375px;
+        height: 150px;
+        img {
+            width: 375px;
+            height: 150px;
+            overflow: hidden;
+        }
+    }
   }
+  .search {
+    padding: 0 1px;
+    .local {
+        display: flex;
+        .localLeft {
+            flex: 4;
+        }
+        .localRight {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+        }
+
+    }
+    .fontSize {
+        width: 650px;
+        font-size: 12px;
+        .minBorder {
+            font-size: 12px;
+            display: inline-block;
+            width: 30px;
+            height: 15px;
+            line-height: 15px;
+            text-align: center;
+            border-radius: 10px;
+            border: 1px solid #d3d3d3;
+        }
+    }
+    
+    .searchButton {
+        padding: 10px 5px;
+        background-color: #ffffff;
+    }
+  }
+  .content {
+    background-color: #ffffff;
+    overflow: hidden;
+    .selfButton {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        margin-top: 20px;
+        .imgButton {
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+        }
+    }
+    .hotel{
+        .Htitle {
+            padding-left: 5px;
+            border-left: 5px solid yellow;
+            padding-bottom: 10px;
+            margin: 10px;
+            border-left: 3px solid yellow;
+            padding-left: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+    }
+  }
+}
 </style>
