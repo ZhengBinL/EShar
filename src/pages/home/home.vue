@@ -75,28 +75,27 @@
   import vStar from "./star";
   import vDaytime from './daytime'
   import vSearch from './search'
-
   export default {
     components: {
       "v-cityItem": cityItem,
-      "v-city": vCity,
-      "v-star": vStar,
-      "v-daytime": vDaytime,
-      "v-search": vSearch
+      "v-city":vCity,
+      "v-star":vStar,
+      "v-daytime":vDaytime,
+      "v-search":vSearch
     },
     data() {
       return {
-        searchFlag: false,
-        cityFlag: false,
-        starFlag: false,
-        dayFlag: false,
-        titleSearch: '',
-        titlePN: '',
-        titleCity: '',
+        searchFlag:false,
+        cityFlag:false,
+        starFlag:false,
+        dayFlag:false,
+        titleSearch:'',
+        titlePN:'',
+        titleCity:'',
         active: "book",
         popupVisible: false,
         rangeValue: 0,
-        title: "酒店",
+        //   title: "酒店",
         goLink: "/",
         loading: true,
         cityArry: [
@@ -145,10 +144,10 @@
     methods: {
       handleCity() {
         debugger;
-        this.$router.push({name: "city"});
+        this.$router.push({ name: "city" });
       },
       handleGosearch() {
-        this.$router.push({name: "hotel"});
+        this.$router.push({ name: "hotel" });
       },
       loadMore() {
         this.loading = true;
@@ -161,24 +160,24 @@
         // }, 2500);
       },
       //选择城市切换
-      switchCityFlag(item) {
+      switchCityFlag(item){
         console.log(item)
-        item.title && (this.titleCity = item.title);
+        item&&(this.titleCity = item.title);
         this.cityFlag = !this.cityFlag;
       },
       //选择日期切换
-      switchDayFlag() {
+      switchDayFlag(){
         this.dayFlag = !this.dayFlag;
       },
       //选择最热搜索切换
-      switchSearchFlag(item) {
-        item && (this.titleSearch = item.name);
+      switchSearchFlag(item){
+        item&&(this.titleSearch = item.name);
         this.searchFlag = !this.searchFlag;
       },
       //选择价格星级切换
-      switchStarFlag(item) {
-        console.log(item, 'item')
-        item.name && (this.titlePN = `¥${item.price}-¥2000+/${item.name}`);
+      switchStarFlag(item){
+        console.log(item,'item')
+        item.name&&(this.titlePN = `¥${item.price}-¥2000+/${item.name}`);
         this.starFlag = !this.starFlag;
       }
     }

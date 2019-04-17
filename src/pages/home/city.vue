@@ -58,13 +58,13 @@ export default {
     methods:{
         //搜索
         handleSearch(){
-            console.log("搜索",this.searchValue)
+            // console.log("搜索",this.searchValue)
         },
         hasAllCity(){
 
         },
         chooseCity(title){
-            console.log(title,'a')
+            // console.log(title,'a')
             MessageBox.confirm('确定选择'+title+'?').then(action => {
                 this.$emit('switchCity',{
                     title

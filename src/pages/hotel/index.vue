@@ -7,10 +7,10 @@
     </mt-header>
 
     <mt-navbar class="select-nav" v-model="selected" @click.native.prevent="clickItem">
-      <mt-tab-item id="1">综合筛选<span class="iconfont " :class="selected==1?'icon-shangjiantou':'icon-xiajiantou'"></span></mt-tab-item>
-      <mt-tab-item id="2">位置区域<span class="iconfont " :class="selected==2?'icon-shangjiantou':'icon-xiajiantou'"></span></mt-tab-item>
-      <mt-tab-item id="3">价格/星级<span class="iconfont " :class="selected==3?'icon-shangjiantou':'icon-xiajiantou'" ></span></mt-tab-item>
-      <mt-tab-item id="4">智能排序<span class="iconfont " :class="selected==4?'icon-shangjiantou':'icon-xiajiantou'"></span></mt-tab-item>
+      <mt-tab-item id="1">综合筛选<span class="iconfont " :class="popupVisible?'icon-xiajiantou':'icon-shangjiantou'"></span></mt-tab-item>
+      <mt-tab-item id="2">位置区域<span class="iconfont " :class="popupVisible1?'icon-xiajiantou':'icon-shangjiantou'"></span></mt-tab-item>
+      <mt-tab-item id="3">价格/星级<span class="iconfont " :class="popupVisible2?'icon-xiajiantou':'icon-shangjiantou'" ></span></mt-tab-item>
+      <mt-tab-item id="4">智能排序<span class="iconfont " :class="selected==4?'icon-xiajiantou':'icon-shangjiantou'"></span></mt-tab-item>
     </mt-navbar>
 
     <!-- tab-container -->
@@ -28,21 +28,17 @@
                 <span>{{item.title}}</span>
               </div>
               <div class="item-info">
-                <span v-for="item in item.name" :key="item.id" @click="handleSelect(item)">{{item.name}}</span>
+                <span :class="item.name==cityFlag?'active':''"
+                v-for="item in item.name" :key="item.id" 
+                @click="handleSelect(item)">{{item.name}}</span>
               </div>
             </div>
             <div class="btns">
-              <button class="clear-btn">清空</button>
-              <button class="sure-btn">确定</button>
+              <button class="clear-btn" @click="handleClear">清空</button>
+              <button class="sure-btn" @click="handleChose('popupVisible')">确定</button>
             </div>
           </div>
         </mt-popup>
-        <!-- <ul v-infinite-scroll="loadMore" infinite-scroll-disabled="loading"
-            infinite-scroll-distance="10">
-            <li v-for="item in cityArry" :key="item.id">
-                <v-cityItem :cityItem="item"></v-cityItem>
-            </li>
-        </ul> -->
       </mt-tab-container-item>
       <mt-tab-container-item id="2">
         <mt-popup
@@ -51,19 +47,16 @@
           :closeOnClickModal="Tflag"
           popup-transition="popup-fade">
           <div class="showPop">
-            <mt-cell v-for="item in distance" :key="item.id" :title="item.score+'以内'"/>
+            <mt-cell v-for="item in distance" :key="item.id" 
+            :title="item.score+'以内'"  
+            :class="item.id==distanceFlag?'distance':''"
+            @click.native="handleDistance(item)"/>
             <div class="btns">
-              <button class="clear-btn">清空</button>
-              <button class="sure-btn">确定</button>
+              <button class="clear-btn" @click="handleClear">清空</button>
+              <button class="sure-btn" @click="handleChose('popupVisible1')">确定</button>
             </div>
           </div>
         </mt-popup>
-        <!-- <ul v-infinite-scroll="loadMore" infinite-scroll-disabled="loading"
-            infinite-scroll-distance="10">
-            <li v-for="item in cityArry" :key="item.id">
-                <v-cityItem :cityItem="item"></v-cityItem>
-            </li>
-        </ul> -->
       </mt-tab-container-item>
       <mt-tab-container-item id="3">
         <mt-popup
@@ -80,21 +73,15 @@
             <div>
               <div class="star-tit"><span>星级</span></div>
               <div class="level">
-                <span :class="index==0?'active':''" v-for="(item,index) in star" :key="item.id">{{item.name}}</span>
+                <span :class="item.id==actionFlag?'active':''" v-for="item in star" :key="item.id" @click="checkAction(item)">{{item.name}}</span>
               </div>
             </div>
             <div class="btns">
-              <button class="clear-btn">清空</button>
-              <button class="sure-btn">确定</button>
+              <button class="clear-btn"  @click="handleClear">清空</button>
+              <button class="sure-btn" @click="handleChose('popupVisible2')">确定</button>
             </div>
           </div>
         </mt-popup>
-        <!-- <ul v-infinite-scroll="loadMore" infinite-scroll-disabled="loading"
-            infinite-scroll-distance="10">
-            <li v-for="item in cityArry" :key="item.id">
-                <v-cityItem :cityItem="item"></v-cityItem>
-            </li>
-        </ul> -->
       </mt-tab-container-item>
       <mt-tab-container-item id="4">
           <div class="showPop">
@@ -128,12 +115,17 @@ export default {
   },
   data() {
     return {
-      popupVisible: true,
+      popupVisible: false,
       popupVisible1: false,
       popupVisible2: false,
       loading: true,
       rangeValue: 0,
       showLevel:true,
+      actionFlag:0,
+      cityFlag:0,
+      distanceFlag:0,
+      chooseCity:{},
+      chooseDistance:{},
       title: "请选择酒店",
       link: "/",
       selected: "4",
@@ -315,22 +307,22 @@ export default {
     };
   },
   methods: {
+    //切换tab
     clickItem() {
-      console.log(this.selected);
       if (this.selected == "1") {
-        this.popupVisible = true;
+        this.popupVisible = !this.popupVisible;
         this.popupVisible1 = false;
         this.popupVisible2 = false;
         this.showLevel = false
       } else if (this.selected == "2") {
         this.popupVisible = false;
-        this.popupVisible1 = true;
+        this.popupVisible1 = !this.popupVisible1;
         this.popupVisible2 = false;
         this.showLevel = false
       } else if (this.selected == "3") {
         this.popupVisible = false;
         this.popupVisible1 = false;
-        this.popupVisible2 = true;
+        this.popupVisible2 = !this.popupVisible2;
         this.showLevel = false
       }else if(this.selected == "4"){
         this.showLevel = true
@@ -345,7 +337,38 @@ export default {
       //     }
       //     this.loading = false;
       // }, 2500);
-    }
+    },
+    //选择品牌
+    handleSelect(item){
+      console.log(item,'item')
+      this.chooseCity = item
+      this.actionFlag = item.name;
+    },
+    //清空
+    handleClear(){
+      this.chooseCity = {};
+      this.cityFlag = 0;
+      this.actionFlag = 0;
+      this.chooseDistance={};
+      this.distanceFlag = 0;
+      this.rangeValue=0;
+    },
+    //确定
+    handleChose(s){
+      this[s] = !this[s]
+      console.log(s)
+      console.log(this.chooseCity,'d')
+    },
+    //选择区域
+    handleDistance(s){
+      this.distanceFlag = s.id;
+      this.chooseDistance  = s;
+    },
+    //切换星级状态
+    checkAction(item){
+        this.actionFlag = item.id;
+        this.actionName = item.name
+    },
   }
 };
 </script>
@@ -488,6 +511,10 @@ export default {
         border-radius: 0.05rem;
         margin: 0 0.05rem 0.1rem 0;
       }
+      .active {
+        background-color: #fff7d4;
+        color: #fca500;
+      }
     }
   }
   .btns {
@@ -512,6 +539,10 @@ export default {
         color: #fff;
       }
     }
+  }
+  .distance {
+    background-color: #fff7d4;
+    color: #fca500;
   }
 }
 
