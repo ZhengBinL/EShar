@@ -50,9 +50,11 @@
       </div>
       <div class="hotel">
         <div class="Htitle">猜你喜欢</div>
-        <ul v-infinite-scroll="loadMore" infinite-scroll-disabled="loading"
-            infinite-scroll-distance="10">
-          <li v-for="item in cityArry" :key="item.id">
+        <ul v-infinite-scroll="loadMore" 
+            infinite-scroll-disabled="loading"
+            infinite-scroll-distance="10"
+            >
+          <li v-for="item in cityArry" :key="item.id" @click="handleDetail(item.id)">
             <v-cityItem :cityItem="item"></v-cityItem>
           </li>
         </ul>
@@ -179,6 +181,11 @@
         console.log(item,'item')
         item.name&&(this.titlePN = `¥${item.price}-¥2000+/${item.name}`);
         this.starFlag = !this.starFlag;
+      },  
+      //酒店详情
+      handleDetail(itemId){
+        console.log(itemId)
+        this.$router.push({name:'hoteInfo',query:{hotelId:itemId}})
       }
     }
   };

@@ -99,7 +99,7 @@
         infinite-scroll-distance="10"
         :class="showLevel?'padd23':'padd10'"
         >
-        <li v-for="item in cityArry" :key="item.id">
+        <li v-for="item in cityArry" :key="item.id" @click="handleDetail(item.id)">
             <v-cityItem :cityItem="item"></v-cityItem>
         </li>
     </ul>
@@ -369,6 +369,11 @@ export default {
         this.actionFlag = item.id;
         this.actionName = item.name
     },
+    //酒店详情
+    handleDetail(itemId){
+      console.log(itemId)
+      this.$router.push({name:'hoteInfo',query:{hotelId:itemId}})
+    }
   }
 };
 </script>

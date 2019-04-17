@@ -22,26 +22,6 @@ const routes = [
     redirect:'/index'
   },
   {
-    path: '/index/city',
-    name: 'city',
-    component: () => import ('@/pages/home/city')
-  },
-  {
-    path: '/index/daytime',
-    name: 'daytime',
-    component: () => import ('@/pages/home/daytime')
-  },
-  {
-    path: '/index/search',
-    name: 'search',
-    component: () => import ('@/pages/home/search')
-  },
-  {
-    path: '/index/star',
-    name: 'star',
-    component: () => import ('@/pages/home/star')
-  },
-  {
     path: '/index',
     name: 'home',
     component: () => import ('@/pages/index')
@@ -65,6 +45,11 @@ const routes = [
     path: '/hotel',
     name: 'hotel',
     component: () => import ('@/pages/hotel/index')
+  },
+  {
+    path: '/hotel/hoteInfo',
+    name: 'hoteInfo',
+    component: () => import ('@/pages/hotel/hoteInfo')
   },
 ]
 const router = new Router({
