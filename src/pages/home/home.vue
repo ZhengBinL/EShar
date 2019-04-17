@@ -92,7 +92,7 @@ export default {
       active: "book",
       popupVisible: false,
       rangeValue: 0,
-      title: "酒店",
+    //   title: "酒店",
       goLink: "/",
       loading: true,
       cityArry: [
@@ -159,7 +159,7 @@ export default {
     //选择城市切换
     switchCityFlag(item){
         console.log(item)
-        item.title&&(this.titleCity = item.title);
+        item&&(this.titleCity = item.title);
         this.cityFlag = !this.cityFlag;
     },
     //选择日期切换

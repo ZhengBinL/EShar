@@ -1,6 +1,6 @@
 <template>
     <div>
-        <mt-popup v-model="starFlag" popup-transition="popup-fade" position="bottom" class="popW" closeOnClickModal="modelFlag">
+        <mt-popup v-model="starFlag" popup-transition="popup-fade" position="bottom" class="popW" :closeOnClickModal="modelFlag">
             <div class="showPop">
                 <div class="tit"><span>价格（每晚均价）</span></div>
                 <mt-range class="rang-cont" v-model="rangeValue" :min="0" :max="2000" :step="10" :bar-height="5">
