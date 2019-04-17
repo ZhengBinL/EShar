@@ -33,7 +33,7 @@ export default {
 
 <style scoped>
 .daytime{
-  width: 375px;
+  width: 3.75rem;
   height: 100%;
 }
 </style>

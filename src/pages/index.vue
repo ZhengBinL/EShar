@@ -47,6 +47,28 @@ export default {
 }
 </script>
 
+<style scoped lang="scss">
+.foot{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.35rem;
+}
+</style>
 <style>
-
+  .foot .mint-tab-item-label{
+    line-height: 0.35rem;
+  }
+  .foot .mint-tab-item{
+    padding: 0;
+    border-left: 1px solid #26a2ff;
+  }
+  .foot .mint-tab-item:first-child{
+    border-left:0;
+  }
+  .foot .mint-tabbar > .mint-tab-item.is-selected{
+    background-color: #26a2ff;
+    color: #fff;
+  }
 </style>

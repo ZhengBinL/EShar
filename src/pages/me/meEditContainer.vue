@@ -17,9 +17,9 @@
   export default {
     name: "meEditInf",
     props: ['basicInfo'],
-    methods:{
-      signOut(){
-        this.$emit('hideEidt',false)
+    methods: {
+      signOut() {
+        this.$emit('hideEidt', false)
       }
     }
   }
@@ -31,25 +31,26 @@
       color: #333;
       background: #eee;
       border-bottom: 1px solid #ccc;
-      line-height: 35px;
-      padding-left: 10px;
+      line-height: 0.35rem;
+      padding-left: 0.1rem;
       margin: 0;
     }
 
     ul {
       margin: 0;
-      padding: 0 10px;
+      padding: 0 0.1rem;
 
       li {
-        padding: 0 5px;
-        line-height: 40px;
+        padding: 0 0.05rem;
+        line-height: 0.4rem;
         border-bottom: 1px solid #ccc;
         color: #333;
-        font-size: 14px;
+        font-size: 0.14rem;
       }
     }
-    .sign-out{
-      margin: 30px 10% 0;
+
+    .sign-out {
+      margin: 0.3rem 10% 0;
       width: 80%;
     }
   }

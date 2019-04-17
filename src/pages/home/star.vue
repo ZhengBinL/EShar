@@ -89,25 +89,25 @@ export default {
     width: 100%;
     .showPop {
         width: 100%;
-        padding: 15px 9px;
+        padding: 0.15rem 0.09rem;
         box-sizing: border-box;
         .tit {
-            font-size: 14px;
+            font-size: 0.14rem;
             color: #999;
-            margin-bottom: 15px;
-            margin-left: 3px;
+            margin-bottom: 0.15rem;
+            margin-left: 0.03rem;
         }
         .rang-cont {
-            margin: 30px auto 0;
+            margin: 0.3rem auto 0;
             width: 90%;
             .rang-num {
                 position: absolute;
-                top: -30px;
+                top: -0.3rem;
                 &.min-num {
-                    left: -10px;
+                    left: -0.1rem;
                 }
                 &.max-num {
-                 right: -10px;
+                 right: -0.1rem;
                 }
             }
 
@@ -116,16 +116,16 @@ export default {
             span {
                 display: inline-block;
                 width: 23%;
-                margin: 3px;
-                line-height: 30px;
+                margin: 0.03rem;
+                line-height: 0.3rem;
                 justify-content: center;
                 align-items: center;
                 background-color: #f6f6f6;
-                border-radius: 5px;
+                border-radius: 0.05rem;
                 box-sizing: border-box;
                 color: #333;
-                font-size: 13px;
-                padding: 5px 0;
+                font-size: 0.13rem;
+                padding: 0.05rem 0;
                 text-align: center;
                 overflow: hidden;
                 &.active {
@@ -141,7 +141,7 @@ export default {
                 width: 50%;
                 background: #fff;
                 color: #333;
-                font-size: 14px;
+                font-size: 0.14rem;
                 &.reset {
                     color: #ffc900;
                 }

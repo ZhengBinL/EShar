@@ -82,12 +82,12 @@ export default {
 
 <style scoped lang="scss">
 .city{
-    width: 375px;
+    width: 3.75rem;
     height: 100%;
     .search{
-        height: 50px;
+        height: 0.5rem;
         .searchList{
-            height: 500px;
+            height: 5rem;
         }
     }
 }

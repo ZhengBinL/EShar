@@ -120,17 +120,17 @@ import editContainer from './meEditContainer'
       background-color: #ffffff;
     }
     .info-container{
-      padding: 20px 15px;
+      padding: 0.2rem 0.15rem;
       position: relative;
       display: flex;
-      border-bottom: 2px solid #ccc;
+      border-bottom: 0.02rem solid #ccc;
       .header-img{
-        margin-right: 15px;
+        margin-right: 0.15rem;
         display: flex;
         flex-direction: column;
         p{
-          width:80px ;
-          height:80px ;
+          width:0.8rem ;
+          height:0.8rem;
           border-radius: 50%;
           overflow: hidden;
           img{
@@ -138,64 +138,64 @@ import editContainer from './meEditContainer'
           }
         }
         .change-header{
-          margin: 5px auto 0;
+          margin: 0.05rem auto 0;
           width: 80%;
-          height: 25px;
-          font-size: 12px;
-          line-height: 12px;
+          height: 0.25rem;
+          font-size: 0.12rem;
+          line-height: 0.12rem;
           background: orange;
           color: #fff;
-          border-radius: 10px;
-          padding: 5px;
+          border-radius: 0.1rem;
+          padding:0.05rem;
         }
       }
       .info{
         display: flex;
         flex-direction: column;
-        padding-top: 14px;
+        padding-top: 0.14rem;
         p{
           color: #333;
           margin: 0;
-          padding-bottom: 12px;
+          padding-bottom: 0.12rem;
           span{
-            font-size: 20px;
-            margin-right: 10px;
+            font-size: 0.2rem;
+            margin-right: 0.1rem;
           }
         }
       }
       .edit-btn{
         position: absolute;
-        right: 15px;
-        top: 15px;
+        right: 0.15rem;
+        top: 0.15rem;
         span{
-          font-size: 30px;
+          font-size: 0.3rem;
         }
       }
     }
     .btns{
       .item{
         border-bottom: 1px solid #ccc;
-        line-height: 45px;
-        padding: 0 15px;
+        line-height: 0.45rem;
+        padding: 0 0.15rem;
         display: flex;
         justify-content: space-between;
         .item-left{
           color: #333;
-          font-size: 14px;
+          font-size: 0.14rem;
           span{
-            margin-right: 10px;
-            font-size: 18px;
+            margin-right: 0.1rem;
+            font-size: 0.18rem;
             color: #ff0000;
           }
         }
         .item-right{
          >span{
-           font-size: 18px;
+           font-size:  0.18rem;
          }
           .mint-badge{
             &.is-error{
-              font-size: 12px;
-              line-height: 14px;
+              font-size:  0.12rem;;
+              line-height:  0.14rem;
             }
           }
         }

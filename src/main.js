@@ -5,6 +5,7 @@ import 'mint-ui/lib/style.css'
 import App from './App'
 import router from './router'
 import './assets/scss/index.scss'
+import './assets/js/rem.js'
 
 
 //引入MintUI

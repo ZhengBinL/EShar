@@ -352,13 +352,13 @@ export default {
 
 <style>
 .hotel .mint-tab-item-label {
-  font-size: 13px;
+  font-size: 0.13rem;
 }
 .hotel ul.padd23{
-  padding-top:45px;
+  padding-top:0.45rem;
 }
 .hotel ul.padd10{
-  padding-top:10px;
+  padding-top:0.1rem;
 }
 .hotel .mint-popup {
   width: 100%;
@@ -395,7 +395,7 @@ export default {
 }
 
 .condition {
-  width: 650px;
+  width: 6.5rem;
   overflow: hidden;
   .condition-cont {
     white-space: nowrap;
@@ -405,43 +405,43 @@ export default {
     }
     span {
       display: inline-block;
-      padding: 5px 15px;
-      margin-right: 5px;
+      padding: 0.05rem 0.15rem;
+      margin-right: 0.05rem;
       background: #fbfbfb;
-      border-radius: 20px;
+      border-radius: 0.2rem;
       color: #333;
     }
   }
 }
 
 .showPop {
-  padding-top: 10px;
-  padding-left: 10px;
+  padding-top: 0.1rem;
+  padding-left: 0.1rem;
   width: 100%;
   box-sizing: border-box;
   .tit {
-    font-size: 18px;
+    font-size: 0.18rem;
     color: #333;
     font-weight: bold;
-    padding: 10px;
+    padding: 0.1rem;
   }
   .star-tit {
-    font-size: 14px;
+    font-size: 0.14rem;
     color: #999;
-    margin-bottom: 15px;
-    margin-left: 3px;
+    margin-bottom: 0.15rem;
+    margin-left: 0.03rem;
   }
   .rang-cont {
-    margin: 30px auto 0;
+    margin: 0.3rem auto 0;
     width: 90%;
     .rang-num {
       position: absolute;
-      top: -30px;
+      top: -0.3rem;
       &.min-num {
-        left: -10px;
+        left: -0.1rem;
       }
       &.max-num {
-        right: -10px;
+        right: -0.1rem;
       }
     }
   }
@@ -449,16 +449,16 @@ export default {
     span {
       display: inline-block;
       width: 23%;
-      margin: 3px;
-      line-height: 30px;
+      margin: 0.03rem;
+      line-height: 0.3rem;
       justify-content: center;
       align-items: center;
       background-color: #f6f6f6;
-      border-radius: 5px;
+      border-radius: 0.05rem;
       box-sizing: border-box;
       color: #333;
-      font-size: 13px;
-      padding: 5px 0;
+      font-size: 0.13rem;
+      padding: 0.05rem 0;
       text-align: center;
       overflow: hidden;
       &.active {
@@ -469,39 +469,39 @@ export default {
   }
   .show-item {
     border-top: 1px solid #eee;
-    margin-left: 10px;
+    margin-left: 0.1rem;
 
     .item-tit {
-      font-size: 14px;
+      font-size: 0.14rem;
       color: #838383;
-      padding: 10px 0;
+      padding: 0.1rem 0;
     }
     .item-info {
-      padding-bottom: 10px;
+      padding-bottom: 0.1rem;
       span {
         display: inline-block;
         width: 31.5%;
         background: #fbfbfb;
         color: #333;
         text-align: center;
-        padding: 10px 0;
-        border-radius: 5px;
-        margin: 0 5px 10px 0;
+        padding: 0.1rem 0;
+        border-radius: 0.05rem;
+        margin: 0 0.05rem 0.1rem 0;
       }
     }
   }
   .btns {
     display: flex;
-    padding: 15px 20px;
+    padding: 0.15rem 0.2rem;
     justify-content: space-between;
     button {
-      border-radius: 20px;
+      border-radius: 0.2rem;
       width: 45%;
-      padding: 10px 0;
+      padding: 0.1rem 0;
       border: 0;
       outline: none;
-      font-size: 14px;
-      letter-spacing: 5px;
+      font-size: 0.14rem;
+      letter-spacing: 0.05rem;
       &.clear-btn {
         background: #fff;
         color: #333;
@@ -517,7 +517,7 @@ export default {
 
 .select-nav {
   span {
-    margin-left: 5px;
+    margin-left: 0.05rem;
   }
 }
 </style>

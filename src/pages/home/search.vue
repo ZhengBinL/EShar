@@ -133,52 +133,56 @@ import { MessageBox } from 'mint-ui';
 <style scoped lang="scss">
 .search-container {
   background: #eee;
-  width: 375px;
+  width: 3.75rem;
   height: 100%;
   .search{
-      height: 50px;
+      height: 0.5rem;
   }
   .show{
-      padding:10px;
-      margin:10px;
+      padding:0 0.1rem 0.1rem;
+      margin:0.1rem;
       background-color: #ffffff;
       .title{
         display: flex;
         justify-content: space-between;
-        padding: 0 10px 10px;
+        padding: 0.1rem 0.1rem;
         border-bottom: 1px solid #d3d3d3;
-        height: 30px;
-        line-height: 30px;
+        height: 0.3rem;
+        line-height: 0.3rem;
+        font-size: 0.14rem;
+        color: #333;
         .pr5{
-          margin-right: 6px;
+          margin-right: 0.06rem;
           color: orange;
-          padding-right: 5px;
+          padding-right: 0.05rem;
         }
         .clear-pr5 {
           color: #333;
         }
       }
       .content{
-        padding: 10px 0;
+        padding: 0.1rem 0;
         .spanBorder{
           overflow: hidden;
           display: inline-flex;
           align-items: center;
           justify-content: center;
           vertical-align: top;
-          border: 1px solid #d3d3d3;
-          margin: 0 5px 10px 0;
-          padding: 0 2px;
+          /*border: 1px solid #d3d3d3;*/
+          margin: 0 0.05rem 0.1rem 0;
+          padding: 0.07rem 0.05rem;
           width: 23.5%;
           box-sizing: border-box;
-          height: 45px;
           text-align: center;
-          border-radius: 3px;
+          border-radius: 0.07rem;
+          font-size: 0.12rem;
+          background: #f5f5f5;
+          color: #3d3d3d;
           }
       }
   }
 }
-.show+.show{
- padding-top:10px;
-}
+/*.show+.show{*/
+ /*padding-top:0.01rem;*/
+/*}*/
 </style>
