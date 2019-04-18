@@ -162,4 +162,9 @@
   .newprice {
     font-size: 0.16rem;
   }
+
+  .newprice i.iconfont{
+    margin-left: -0.03rem;
+    font-size: 0.12rem;
+  }
 </style>

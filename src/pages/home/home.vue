@@ -185,7 +185,7 @@
       //酒店详情
       handleDetail(itemId){
         console.log(itemId)
-        this.$router.push({name:'hoteInfo',query:{hotelId:itemId}})
+        this.$router.push({name:'hoteDetail',query:{hotelId:itemId}})
       }
     }
   };
@@ -313,9 +313,9 @@
 
       .hotel {
         .Htitle {
-          border-left: 0.05rem solid yellow;
+          border-left: 0.05rem solid #ffef7f;
           margin: 0.1rem;
-          border-left: 0.03rem solid yellow;
+          border-left: 0.03rem solid #ffef7f;
           padding: 0 0 0 0.1rem;
           font-size: 0.16rem;
           font-weight: bold;

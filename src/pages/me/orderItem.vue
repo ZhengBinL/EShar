@@ -61,7 +61,7 @@
 <style scoped lang='scss'>
   .order-item {
     margin-top: 0.1rem;
-    border-bottom: 0.02rem solid #eee;
+    border-bottom: 0.02rem solid #efefef;
 
     .top {
       padding: 0 0.1rem;
@@ -71,7 +71,7 @@
       font-size: 0.14rem;
 
       span {
-        color: orange;
+        color: #eb5d2b;
         font-size: 0.12rem;
       }
     }
@@ -89,7 +89,7 @@
 
         span {
           &.iconfont {
-            color: orange;
+            color: #eb5d2b;
             margin-right: 0.1rem;
             font-size: 0.18rem;
           }

@@ -81,6 +81,13 @@
       // 进入酒店详情
       goHotelDetail() {
         console.log('进入酒店详情')
+        this.$router.push({
+          path: '/hotel/detail',
+          name: 'hoteDetail',
+          query:{
+            hotelId:1
+          }
+        })
         // this.$router.push({
         //   path:'',
         //   name:'',
@@ -133,6 +140,7 @@
       flex-direction: column;
       padding: 0.15rem;
       border-bottom: 1px solid #eee;
+      font-size: 0.14rem;
 
       p {
         &:last-child {
@@ -156,6 +164,7 @@
       flex-direction: column;
       padding: 0.15rem;
       border-bottom: 1px solid #eee;
+      font-size: 0.14rem;
 
       p {
         &:last-child {
@@ -178,18 +187,19 @@
       display: flex;
       justify-content: space-between;
       padding: 0.15rem;
-      border-bottom: 0.02rem solid #eee;
+      border-bottom: 0.02rem solid #efefef;
+      font-size: 0.14rem;
 
       p {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        color: #838383;
+        color: #828282;
 
         span {
           &:first-child {
-            color: orange;
+            color: #eb5d2b;
             font-size: 0.16rem;
             padding-bottom: 0.05rem;
           }
@@ -198,8 +208,9 @@
     }
 
     .order-num {
-      color: #838383;
+      color: #828282;
       padding: 0.15rem;
+      font-size: 0.14rem;
 
       span {
         color: #333;
@@ -212,8 +223,18 @@
       margin-top: 0.2rem;
 
       .mint-button--default {
+        border: 0;
+        outline: none;
         width: 50%;
-        color: orange;
+        background: #eb5d2b;
+        text-align: center;
+        color: #fff;
+        border-radius: 0.04rem;
+        height: 0.44rem;
+        line-height: 0.44rem;
+        font-size: 0.18rem;
+        -webkit-box-shadow: 0 0.02rem 0.04rem #ffceb7;
+        box-shadow: 0 0.02rem 0.04rem #ffceb7;
       }
     }
   }

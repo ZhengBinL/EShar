@@ -165,19 +165,14 @@ import { MessageBox } from 'mint-ui';
         .spanBorder{
           overflow: hidden;
           display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          vertical-align: top;
-          /*border: 1px solid #d3d3d3;*/
           margin: 0 0.05rem 0.1rem 0;
           padding: 0.07rem 0.05rem;
           width: 23.5%;
           box-sizing: border-box;
-          text-align: center;
-          border-radius: 0.07rem;
+          border-radius: 0.1rem;
           font-size: 0.12rem;
-          background: #f5f5f5;
-          color: #3d3d3d;
+          background: #f9f9f9;
+          color: #212121;
           }
       }
   }

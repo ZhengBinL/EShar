@@ -123,7 +123,7 @@ import editContainer from './meEditContainer'
       padding: 0.2rem 0.15rem;
       position: relative;
       display: flex;
-      border-bottom: 0.02rem solid #ccc;
+      border-bottom: 0.02rem solid #efefef;
       .header-img{
         margin-right: 0.15rem;
         display: flex;
@@ -167,6 +167,7 @@ import editContainer from './meEditContainer'
         position: absolute;
         right: 0.15rem;
         top: 0.15rem;
+        color: #26a2ff;
         span{
           font-size: 0.3rem;
         }
@@ -174,7 +175,7 @@ import editContainer from './meEditContainer'
     }
     .btns{
       .item{
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #efefef;
         line-height: 0.45rem;
         padding: 0 0.15rem;
         display: flex;
@@ -185,7 +186,7 @@ import editContainer from './meEditContainer'
           span{
             margin-right: 0.1rem;
             font-size: 0.18rem;
-            color: #ff0000;
+            color: #eb5d2b;
           }
         }
         .item-right{
