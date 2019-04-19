@@ -14,27 +14,27 @@
         <mt-button v-if="isShowEdit" @click="actionSheet" class="change-header" size="small" type="default">更换头像</mt-button>
       </div>
       <div class="info">
-        <p><span class="iconfont icon-character"></span>：{{phone}}</p>
-        <p v-if="!isShowEdit"><span class="iconfont icon-xingxing"></span>：{{name}}</p>
+        <p><span class="iconfont iconrenshu"></span>：{{phone}}</p>
+        <p v-if="!isShowEdit"><span class="iconfont icontubiao_wuxing-"></span>：{{name}}</p>
       </div>
-      <div class="edit-btn" @click="editBtn"><span class="iconfont icon-wenti1"></span></div>
+      <div class="edit-btn" @click="editBtn"><span class="iconfont iconbianji"></span></div>
     </div>
     <div v-if="!isShowEdit" class="btns">
       <div class="item" @click="goOrder">
-        <p class="item-left"><span class="iconfont icon-quxiaodingdanxiao
+        <p class="item-left"><span class="iconfont icondingdan
 "></span>我的订单</p>
-        <p class="item-right"><span class="iconfont icon-youjiantou"></span></p>
+        <p class="item-right"><span class="iconfont iconnext"></span></p>
       </div>
       <div class="item">
-        <p class="item-left"><span class="iconfont icon-tongxunlu"></span>我的二维码</p>
-        <p class="item-right"><span class="iconfont icon-youjiantou"></span></p>
+        <p class="item-left"><span class="iconfont iconico"></span>我的二维码</p>
+        <p class="item-right"><span class="iconfont iconnext"></span></p>
       </div>
       <div class="item">
-        <p class="item-left"><span class="iconfont icon-character"></span>联系客服</p>
-        <p class="item-right"><span class="iconfont icon-youjiantou"></span></p>
+        <p class="item-left"><span class="iconfont iconhuaban-1"></span>联系客服</p>
+        <p class="item-right"><span class="iconfont iconnext"></span></p>
       </div>
       <div class="item">
-        <p class="item-left"><span class="iconfont icon-wenti"></span>系统通知</p>
+        <p class="item-left"><span class="iconfont icontongzhi"></span>系统通知</p>
         <p class="item-right"><mt-badge type="error" size="small">{{noteNum}}</mt-badge></p>
       </div>
     </div>
@@ -167,9 +167,9 @@ import editContainer from './meEditContainer'
         position: absolute;
         right: 0.15rem;
         top: 0.15rem;
-        color: #26a2ff;
+        color: #eb5d2b;
         span{
-          font-size: 0.3rem;
+          font-size: 0.2rem;
         }
       }
     }

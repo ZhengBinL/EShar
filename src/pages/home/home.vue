@@ -17,7 +17,7 @@
           </mt-cell>
         </div>
         <div class="localRight">
-          <span class="iconfont icon-dingwei"></span>
+          <span class="iconfont icondingwei-"></span>
           <span>我的附近</span>
         </div>
       </div>
@@ -36,16 +36,16 @@
     <div class="content">
       <div class="selfButton">
         <mt-button class="imgButton">
-          <img src="../../assets/img/BJ.jpg" slot="icon">
+          <img src="../../assets/img/bj1.jpg" slot="icon">
         </mt-button>
         <mt-button class="imgButton">
-          <img src="../../assets/img/BJ.jpg" slot="icon">
+          <img src="../../assets/img/sh.jpg" slot="icon">
         </mt-button>
         <mt-button class="imgButton">
-          <img src="../../assets/img/BJ.jpg" slot="icon">
+          <img src="../../assets/img/gz.jpg" slot="icon">
         </mt-button>
         <mt-button class="imgButton">
-          <img src="../../assets/img/BJ.jpg" slot="icon">
+          <img src="../../assets/img/sz.jpg" slot="icon">
         </mt-button>
       </div>
       <div class="hotel">
@@ -240,7 +240,8 @@
           font-size: 0.12rem;
 
           span.iconfont {
-            font-size: 0.2rem;
+            font-size: 0.18rem;
+            font-weight: bold;
             color: #ff9300;
           }
         }
@@ -308,6 +309,15 @@
           width: 0.4rem;
           height: 0.4rem;
           border-radius: 0.2rem;
+          position: relative;
+          box-shadow: 0 0 0.04rem rgba(0, 0, 0,0.7);
+          img{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0.4rem;
+            height: 0.4rem;
+          }
         }
       }
 
