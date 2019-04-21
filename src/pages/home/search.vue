@@ -53,7 +53,7 @@ import { MessageBox } from 'mint-ui';
     },
     data() {
       return {
-        checkShow:false,
+        checkShow:true,
         citySearch: [],
         searchValue: '',
         history: [

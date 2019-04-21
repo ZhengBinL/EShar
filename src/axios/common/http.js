@@ -1,6 +1,5 @@
 import axios from 'axios'
-// import { Message } from 'element-ui'
-import {ERR_OK, apiUrl} from '@/axios/common/common.js'
+import { apiUrl} from '@/axios/common/common.js'
 // 配置API接口地址
 const root = apiUrl
 
@@ -43,8 +42,8 @@ function checkStatus (response) {
 function checkCode (res) {
   // 如果code异常(这里已经包括网络错误，服务器错误，后端抛出的错误)，可以弹出一个错误提示，告诉用户
   if (res.status === 500) {
-    Message({
-      type: 'error',
+    MessageBox.alert({
+      title: '提示',
       message: res.msg
     })
   }
@@ -60,12 +59,12 @@ function checkCode (res) {
 export default {
   post (url, data) {  //  post
     var obj = {};
-    if(url.indexOf("login")==-1){ //没有login,传token
+    // if(url.indexOf("login")==-1){ //没有login,传token
 
-    }
-    else if( url.indexOf("login")>-1){
+    // }
+    // else if( url.indexOf("login")>-1){
 
-    }
+    // }
 
     return axios({
       method: 'post',
@@ -86,12 +85,12 @@ export default {
   },
   get (url, params) {  // get
     var obj = {};
-    if(url.indexOf("login")==-1){
+    // if(url.indexOf("login")==-1){
 
-    }
-    else if(url.indexOf("login")>-1){
+    // }
+    // else if(url.indexOf("login")>-1){
 
-    }
+    // }
     return axios({
       method: 'get',
       baseURL: root,
