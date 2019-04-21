@@ -168,13 +168,8 @@
         </table>
         <div class="container">
             <ul class="months">
-<<<<<<< HEAD
-                <li class="calendar-month" v-for="item in [1, 2, 3, 4]" :key="item">
-                    <div class="calendar-month-header">2019-0{{item}}</div>
-=======
                 <li class="calendar-month" v-for="monthItem in renderData">
                     <div class="calendar-month-header">{{monthItem.month}}</div>
->>>>>>> 1b8612d3327fd0201352107c80aced88221c0082
                     <table class="calendar-month-table">
                         <tbody>
                             <tr v-for="weekItem in monthItem.weeks">
