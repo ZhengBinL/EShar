@@ -6,12 +6,17 @@
               <mt-button icon="back"  @click.native="goBack" slot="left"></mt-button>
           </mt-header>
         </div>
+        <calendar></calendar>
       </mt-popup>
     </div>
 </template>
 
 <script>
+import calendar from '../../components/calendar.vue';
 export default {
+  components: {
+      calendar: calendar
+  },
   props:{
       dayFlag:{
           type:Boolean,
@@ -20,7 +25,7 @@ export default {
   },
   data(){
       return{
-        
+
       }
   },
   methods:{
