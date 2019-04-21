@@ -26,16 +26,16 @@
       <div class="start">2012年装修 2005年开业</div>
       <div class="equipment">
         <div class="equ-left">
-          <p><i class="iconfont icon-right-1"></i><span>行李寄存</span></p>
-          <p><i class="iconfont icon-right-1"></i><span>娱乐场/棋牌室</span></p>
-          <p><i class="iconfont icon-right-1"></i><span>洗衣服务</span></p>
+          <p><i class="iconfont iconright-1"></i><span>行李寄存</span></p>
+          <p><i class="iconfont iconright-1"></i><span>娱乐场/棋牌室</span></p>
+          <p><i class="iconfont iconright-1"></i><span>洗衣服务</span></p>
         </div>
-        <div class="eqi-right">须知/电话 <i class="iconfont icon-youjiantou"></i>
+        <div class="eqi-right">须知/电话 <i class="iconfont iconnext"></i>
         </div>
       </div>
       <div class="address">
         <p>地址：古城路由文化区|位于东信广场，魏都大道46号（市劳动局对面），靠近益丰商务大厦</p>
-        <p class="note"><i class="iconfont icon-feiji"></i> 距东王庄机场驾车14.6公里 约39分钟</p>
+        <p class="note"><i class="iconfont iconfeiji"></i> 距东王庄机场驾车14.6公里 约39分钟</p>
       </div>
     </div>
     <div class="room">
@@ -44,7 +44,7 @@
           <span class="count">1晚<i></i></span>
           <span class="end">04/19 明天</span>
         </p>
-        <p>修改日期 <i class="iconfont icon-right-1"></i></p>
+        <p>修改日期 <i class="iconfont iconnext"></i></p>
       </div>
       <div class="condition">
         <div class="condition-cont">

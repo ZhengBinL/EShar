@@ -15,7 +15,7 @@
       <div class="book-price">
         <div class="book-price-top">
           <del>￥{{info.price1}}</del>
-          <span><i>￥</i>{{info.price2}}</span>起<i class="iconfont icon-youjiantou"></i>
+          <span><i>￥</i>{{info.price2}}</span>起<i class="iconfont icondown"></i>
         </div>
         <p>立减</p>
       </div>
@@ -119,10 +119,22 @@
             font-weight: bold;
             padding-right: 0.05rem;
             i {
-              font-weight: normal;
+              display: inline-block;
+              width: 0.13rem;
+              height: 0.13rem;
               font-style: normal;
-              font-size: 0.12rem
+              font-size: 0.12rem;
             }
+          }
+          .iconfont{
+            display: inline-block;
+            width: 0.13rem;
+            height: 0.13rem;
+            border-radius: 50%;
+            background: linear-gradient(270deg,#f35,#ff9300);
+            font-size: 0.12rem;
+            margin-left: 0.03rem;
+            color: #fff;
           }
         }
         p{

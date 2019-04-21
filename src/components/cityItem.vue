@@ -20,7 +20,7 @@
           <div class="price">
             <span class="oldprice">¥{{cityItem.oldPrice}}起</span>
             <div class="nowpice">
-              <span class="newprice"><span class="fontSize">¥</span>{{cityItem.newPrice}}<span class="fontSize">起</span> <i class="iconfont icon-wenti"></i></span>
+              <span class="newprice"><span class="fontSize">¥</span>{{cityItem.newPrice}}<span class="fontSize">起</span> <i class="iconfont iconnext"></i></span>
               <div>
                                 <span class="reduce">立减¥{{cityItem.oldPrice/1 - cityItem.newPrice/1}}
                                 </span>
@@ -164,7 +164,13 @@
   }
 
   .newprice i.iconfont{
+    display: inline-block;
+    width: 0.13rem;
+    height: 0.13rem;
+    border-radius: 50%;
+    background: linear-gradient(270deg,#f35,#ff9300);
     margin-left: -0.03rem;
     font-size: 0.12rem;
+    color: #fff;
   }
 </style>

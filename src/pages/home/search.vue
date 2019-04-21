@@ -15,10 +15,10 @@
       <div class="show">
         <div class="title">
           <div>
-            <i class="iconfont icon-shijian pr5"></i><span>搜索历史</span>
+            <i class="iconfont iconshijian pr5"></i><span>搜索历史</span>
           </div>
           <div @click="clearValue">
-            <i class="iconfont icon-shanchu pr5 clear-pr5"></i><span>清空</span>
+            <i class="iconfont iconqingkongshanchu pr5 clear-pr5"></i><span>清空</span>
           </div>
         </div>
         <div class="content">
@@ -28,10 +28,10 @@
       <div class="show">
         <div class="title">
           <div>
-            <i class="iconfont icon-chengshi pr5"></i><span>热门品牌</span>
+            <i class="iconfont iconhotel pr5"></i><span>热门品牌</span>
           </div>
           <div @click="checkUp">
-            <i class="iconfont" :class="checkShow?'icon-xiajiantou':'icon-shangjiantou'"></i>
+            <i class="iconfont" :class="checkShow?'iconupward':'icondown'"></i>
           </div>
         </div>
         <div class="content" v-show="checkShow">

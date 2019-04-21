@@ -8,12 +8,12 @@
 
     <mt-navbar class="select-nav" v-model="selected" @click.native.prevent="clickItem">
       <mt-tab-item id="1">综合筛选<span class="iconfont "
-                                    :class="popupVisible?'icon-xiajiantou':'icon-shangjiantou'"></span></mt-tab-item>
+                                    :class="popupVisible?'icondown':'iconupward'"></span></mt-tab-item>
       <mt-tab-item id="2">位置区域<span class="iconfont "
-                                    :class="popupVisible1?'icon-xiajiantou':'icon-shangjiantou'"></span></mt-tab-item>
+                                    :class="popupVisible1?'icondown':'iconupward'"></span></mt-tab-item>
       <mt-tab-item id="3">价格/星级<span class="iconfont "
-                                     :class="popupVisible2?'icon-xiajiantou':'icon-shangjiantou'"></span></mt-tab-item>
-      <mt-tab-item id="4">智能排序<span class="iconfont " :class="selected==4?'icon-xiajiantou':'icon-shangjiantou'"></span>
+                                     :class="popupVisible2?'icondown':'iconupward'"></span></mt-tab-item>
+      <mt-tab-item id="4">智能排序<span class="iconfont " :class="selected==4?'icondown':'iconupward'"></span>
       </mt-tab-item>
     </mt-navbar>
 
@@ -620,7 +620,7 @@
       position: relative;
       &::after{
         font-family: "iconfont";
-        content: '\e610';
+        content: '\e633';
         color: #fca500;
         position: absolute;
         right: 0.05rem;
