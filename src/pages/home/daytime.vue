@@ -6,13 +6,14 @@
               <mt-button icon="back"  @click.native="goBack" slot="left"></mt-button>
           </mt-header>
         </div>
-        <calendar></calendar>
+        <calendar :config="config"></calendar>
       </mt-popup>
     </div>
 </template>
 
 <script>
 import calendar from '../../components/calendar.vue';
+
 export default {
   components: {
       calendar: calendar
@@ -25,7 +26,20 @@ export default {
   },
   data(){
       return{
-
+        config: {
+          mode: 'future',
+          startDate: '2019-01-01',
+          endDate: '2019-12-31',
+          disabledData: [{startDate: '2019-06-01', endDate: '2019-12-31'}],
+          initData: [
+            {date: '2019-04-30', status: 'disabled', type: 'work', info: '100%'},
+            {date: '2019-05-01', flag: 'holiday', type: 'rest', note: '五一'},
+            {date: '2019-05-02', flag: 'holiday', type: 'rest'}
+          ],
+          onSelected(selectedData) {
+            console.log('selectedData', selectedData);
+          }
+        }
       }
   },
   methods:{
