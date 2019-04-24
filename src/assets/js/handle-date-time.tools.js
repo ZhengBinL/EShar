@@ -95,13 +95,13 @@ export default {
         if(year !== undefined){
             currentDate.setFullYear(year);
         }
-
         while(month === currentDate.getMonth() + 1){
             currentDate.setDate(++currentDay);
         }
 
         return currentDay - 1;
     },
+
     /**
      * [getMonthZone 获取月份的开始和结束日期]
      * @param  {[String|Date]}  date  [指定一个日期]  (选填)  默认 当天
@@ -136,6 +136,7 @@ export default {
      * @return {Array}             [日期＋星期 点 数组]
      */
     buildDatePoints: function(start, end){
+
         var that = this;
         var datePoints = [];
         var currentTime = (new Date(start.replace(/-/g, '/') + ' 00:00:00')).getTime();
@@ -151,13 +152,13 @@ export default {
             d = currentDate.getDate();
             w = currentDate.getDay();
 
+
             datePoints.push({
                 date: y + '-' + that.fillZero(m) + '-' + that.fillZero(d),
                 week: w,  // JS week
                 day: d
             });
         }
-
         return datePoints;
     },
     // 补 0
@@ -165,3 +166,4 @@ export default {
         return n > 9 ? n : '0' + n;
     }
 };
+

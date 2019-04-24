@@ -236,6 +236,7 @@
         },
         methods: {
             setOptions(newConfig) {
+              console.log(newConfig)
                 let oldConfig = this.config;
                 if(typeof newConfig === 'object'){
                     Object.keys(newConfig).forEach(key => oldConfig[key] = newConfig[key]);
@@ -245,6 +246,7 @@
             },
             buildData() {
                 let today = this.handleDateTime.getDateTime().substr(0, 10);
+
                 let weekday = [0, 6];
                 const config = this.config;
                 if(config.startDate && config.endDate){
@@ -272,6 +274,7 @@
                         let dateMonth = dateItem.date.substr(0, 7);
                         let contrastItem = contrastData[dateItem.date];
                         let weekIndex = orderWeeks.indexOf(dateItem.week);
+
                         let item = {
                             date: dateItem.date,
                             day: dateItem.day,
@@ -326,6 +329,7 @@
                 }
             },
             onSelected(item) {
+              console.log(this.$data)
                 let data = this.$data;
                 if(item.status !== 'disabled' && item.status !== 'empty'){
                     if(data.selectedStartItem && data.selectedEndItem){
