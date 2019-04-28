@@ -12,8 +12,8 @@
         <div>
           <div class="tit"><span>星级</span></div>
           <div class="level">
-            <span :class="item.id==actionFlag?'active':''" v-for="item in star" :key="item.id"
-                  @click="checkAction(item)">{{item.name}}</span>
+            <span :class="item.dictCode==actionFlag?'active':''" v-for="item in starArry" :key="item.id"
+                  @click="checkAction(item)">{{item.dictLabel}}</span>
           </div>
         </div>
         <div class="btns">
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
     props: {
       starFlag: {
@@ -39,7 +40,7 @@
         actionFlag: 0,
         actionName: '',
         modelFlag: false,
-        star: [
+        starArry: [
           {
             id: 0,
             name: "不限"
@@ -63,11 +64,25 @@
         ]
       }
     },
+    mounted(){
+      this.starList()
+    },
     methods: {
+      starList(){
+        console.log('star')
+        let url = '/api/starList'
+        axios.get(url).then((res)=>{
+          if(res.status == 200){
+            console.log(res,'star')
+            let starList  = res.data
+            this.starArry  = starList.data
+          }
+        })
+      },
       //切换星级状态
       checkAction(item) {
-        this.actionFlag = item.id;
-        this.actionName = item.name
+        this.actionFlag = item.dictCode;
+        this.actionName = item.dictLabel
       },
       //重置
       handleReset() {

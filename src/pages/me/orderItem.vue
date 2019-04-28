@@ -1,32 +1,32 @@
 <template>
   <div class="order-item">
     <div class="top">
-      <p class="title">{{itemInfo.title}}</p>
+      <!-- <p class="title">{{itemInfo.title}}</p> -->
       <!--具体怎么显示看实际情况、、-->
-      <span v-if="itemInfo.type==2?true:false">已关闭</span>
-      <span v-if="itemInfo.type==4?true:false">交易成功</span>
-      <span v-if="itemInfo.type==5?true:false">退款成功</span>
-      <span v-if="itemInfo.type==3?true:false">待入住</span>
-      <span v-if="itemInfo.type==1?true:false">待付款</span>
+      <span v-if="itemInfo.orderStatus==2?true:false">已关闭</span>
+      <span v-if="itemInfo.orderStatus==4?true:false">交易成功</span>
+      <span v-if="itemInfo.orderStatus==5?true:false">退款成功</span>
+      <span v-if="itemInfo.orderStatus==3?true:false">待入住</span>
+      <span v-if="itemInfo.orderStatus==1?true:false">待付款</span>
     </div>
-    <div class="info" @click="goDetail">
+    <div class="info" @click="goDetail(itemInfo)">
       <div class="info-left">
         <span class="iconfont icon-chengshi"></span>
         <div class="text">
-          <p class="text-tit">{{itemInfo.hotel}}</p>
-          <p class="text-house">{{itemInfo.standard}}</p>
-          <p class="text-time">入住时间 {{itemInfo.checkInTime}} 至 {{itemInfo.leaveTime}} </p>
+          <p class="text-tit">{{itemInfo.hotelName}}</p>
+          <p class="text-house">{{itemInfo.roomName}}</p>
+          <p class="text-time">入住时间 {{itemInfo.liveStartTime}} 至 {{itemInfo.liveEndTime}} </p>
         </div>
       </div>
-      <div class="info-right">￥{{itemInfo.price}}</div>
+      <div class="info-right">￥{{itemInfo.orderPrice}}</div>
     </div>
-    <div class="total">合计：￥{{itemInfo.totalPrice}}</div>
+    <div class="total">合计：￥{{itemInfo.orderPrice}}</div>
     <div class="order-item-btn">
       <!--具体怎么显示看情况-->
-      <mt-button size="small" v-if="itemInfo.type==2||itemInfo.type==3||itemInfo.type==4||itemInfo.type==5?true:false"
+      <mt-button size="small" v-if="itemInfo.orderStatus==2||itemInfo.orderStatus==1||itemInfo.orderStatus==4||itemInfo.orderStatus==5?true:false"
                  @click="deleteOrder(itemInfo.id)">删除订单
       </mt-button>
-      <mt-button size="small" v-if="itemInfo.type==1?true:false" @click="refund(itemInfo.id)">退款</mt-button>
+      <mt-button size="small" v-if="itemInfo.orderStatus==3?true:false" @click="refund(itemInfo.id)">退款</mt-button>
     </div>
   </div>
 </template>
@@ -35,14 +35,22 @@
   export default {
     name: "oederItem",
     props: ['itemInfo'],
+    data(){
+      return {
+
+      }
+    },
+    mounted(){
+
+    },
     methods: {
       // 跳转到详情页面 需要传入一个订单的唯一值 暂无
-      goDetail() {
+      goDetail(itemInfo) {
         this.$router.push({
           path: '/me/order/detail',
           name: 'detail',
           params: {
-            id: 1
+            itemInfo: itemInfo
           }//传参
         })
       },

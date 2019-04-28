@@ -3,8 +3,9 @@
         position: relative;
         padding-top: 30px;
         width: 100%;
-        height: 100%;
+        height: calc(100% - 40px);
         text-align: center;
+        box-sizing: border-box;
 
         --main: #ffc900;
         --light: #fff6d6;

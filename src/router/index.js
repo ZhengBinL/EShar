@@ -55,7 +55,7 @@ const routes = [
     path: '/hotel/detail',
     name: 'hoteDetail',
     component: () => import ('@/pages/hotel/detail')
-  },
+  }
 ]
 const router = new Router({
   routes
