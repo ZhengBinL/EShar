@@ -34,7 +34,8 @@ export default {
           initData: [
             {date: '2019-04-30', status: 'disabled', type: 'work', info: '100%'},
             {date: '2019-05-01', flag: 'holiday', type: 'rest', note: '五一'},
-            {date: '2019-05-02', flag: 'holiday', type: 'rest'}
+            {date: '2019-05-02', flag: 'holiday', type: 'rest'},
+            {date: '2019-06-01', flag: 'holiday', type: 'rest',note:'六一'}
           ],
           onSelected(selectedData) {
             console.log('selectedData', selectedData);
