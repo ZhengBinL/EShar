@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="content" v-show="checkShow">
-          <span v-for="item in history" :key="item.id" class="spanBorder" @click="chooseHotel(item)">{{item.name}}</span>
+          <span v-for="item in hotHotel" :key="item.id" class="spanBorder" @click="chooseHotel(item)">{{item.dictLabel}}</span>
         </div>
       </div>
     </mt-popup>
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { MessageBox } from 'mint-ui';
   export default {
     props:{
@@ -85,13 +86,26 @@ import { MessageBox } from 'mint-ui';
             id: 6,
             name: "同理大酒店6"
           },
-        ]
+        ],
+        hotHotel:[]
       }
     },
     mounted(){
       // this.checkShow = false
+      this.handleBrandList()
     },
     methods:{
+      //热门品牌
+      handleBrandList(){
+        let url = '/api/brandList'
+        axios.get(url).then((res)=>{
+          if(res.status == 200){
+            console.log(res,'dddsss')
+            let hotList  = res.data
+            this.hotHotel  = hotList.data
+          }
+        })
+      },
       //搜索
         handleSearch(){
             console.log("搜索",this.searchValue)
@@ -109,7 +123,7 @@ import { MessageBox } from 'mint-ui';
         //选择酒店
         chooseHotel(item){
           console.log(item,'a')
-          MessageBox.confirm('确定选择'+item.name+'?').then(action => {
+          MessageBox.confirm('确定选择'+item.dictLabel+'?').then(action => {
                 this.$emit('switchSearch',{
                   ...item
                 })

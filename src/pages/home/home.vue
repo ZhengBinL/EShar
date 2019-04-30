@@ -54,7 +54,7 @@
             infinite-scroll-disabled="loading"
             infinite-scroll-distance="10"
             >
-          <li v-for="item in cityArry" :key="item.id" @click="handleDetail(item.id)">
+          <li v-for="item in cityArry" :key="item.id" @click="handleDetail(item)">
             <v-cityItem :cityItem="item"></v-cityItem>
           </li>
         </ul>
@@ -77,6 +77,9 @@
   import vStar from "./star";
   import vDaytime from './daytime'
   import vSearch from './search'
+  // import http from '@/axios/common/http'
+  // import {apiUrl} from '@/axios/common/common.js'
+  import axios from 'axios'
   export default {
     components: {
       "v-cityItem": cityItem,
@@ -143,7 +146,22 @@
         ],
       };
     },
+    mounted(){
+      this.hotelList()
+    },
     methods: {
+      //酒店列表
+      hotelList(){
+        console.log('chufa')
+        let url = '/api/hotelList'
+        axios.get(url).then((res)=>{
+          if(res.status == 200){
+            console.log(res,'dddsss')
+            let cityList  = res.data
+            this.cityArry  = cityList.data
+          }
+        })
+      },
       handleCity() {
         debugger;
         this.$router.push({ name: "city" });
@@ -166,7 +184,7 @@
       },
       //选择最热搜索切换
       switchSearchFlag(item){
-        item&&(this.titleSearch = item.name);
+        item&&(this.titleSearch = item.dictLabel);
         this.searchFlag = !this.searchFlag;
       },
       //选择价格星级切换
@@ -176,9 +194,9 @@
         this.starFlag = !this.starFlag;
       },  
       //酒店详情
-      handleDetail(itemId){
-        console.log(itemId)
-        this.$router.push({name:'hoteDetail',query:{hotelId:itemId}})
+      handleDetail(item){
+        console.log(item)
+        this.$router.push({name:'hoteDetail',query:{hoteDetail:item}})
       }
     }
   };

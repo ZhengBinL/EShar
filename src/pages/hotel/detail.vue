@@ -1,41 +1,45 @@
 <template>
   <div class="hotel-detail-container">
-    <mt-header :title="title">
+    <mt-header :title="hoteDetailList.brandName" class="header">
       <router-link to="/" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
       <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
     <div class="imgs">
-      <mt-swipe class="img-cont" :auto="4000">
+      <div class="img-cont">
+        <img :src="hoteDetailList.imageUrl">
+      </div>
+      <!-- <mt-swipe class="img-cont" :auto="4000">
         <mt-swipe-item><img src="../../assets/img/1.jpg"></mt-swipe-item>
         <mt-swipe-item><img src="../../assets/img/2.jpg"></mt-swipe-item>
         <mt-swipe-item><img src="../../assets/img/3.jpg"></mt-swipe-item>
-      </mt-swipe>
+      </mt-swipe> -->
     </div>
     <div class="info">
-      <div class="title">大同浩海国际酒店<span>高档型</span></div>
+      <div class="title">{{hoteDetailList.brandName}}<span>{{hoteDetailList.starName}}</span></div>
       <div class="score">
-        <span class="yellow fen">4.7<i>分</i></span>
-        <span class="yellow">非常好</span>
-        <span class="gray">性价比高</span>
-        <span class="gray">服务周到</span>
+        <span class="yellow fen">{{hoteDetailList.scoreName}}<i>分</i></span>
+        <span class="yellow">{{hoteDetailList.scoreEstimate}}</span>
+        <!-- <span class="gray">性价比高</span>
+        <span class="gray">服务周到</span> -->
       </div>
     </div>
     <div class="introduce">
-      <div class="start">2012年装修 2005年开业</div>
+      <div class="start">{{hoteDetailList.fitmentDate}}年装修 {{hoteDetailList.startBusiness}}年开业</div>
       <div class="equipment">
         <div class="equ-left">
-          <p><i class="iconfont iconright-1"></i><span>行李寄存</span></p>
+          <p>{{hoteDetailList.services}}</p>
+          <!-- <p><i class="iconfont iconright-1"></i><span>行李寄存</span></p>
           <p><i class="iconfont iconright-1"></i><span>娱乐场/棋牌室</span></p>
-          <p><i class="iconfont iconright-1"></i><span>洗衣服务</span></p>
+          <p><i class="iconfont iconright-1"></i><span>洗衣服务</span></p> -->
         </div>
         <div class="eqi-right">须知/电话 <i class="iconfont iconnext"></i>
         </div>
       </div>
       <div class="address">
-        <p>地址：古城路由文化区|位于东信广场，魏都大道46号（市劳动局对面），靠近益丰商务大厦</p>
-        <p class="note"><i class="iconfont iconfeiji"></i> 距东王庄机场驾车14.6公里 约39分钟</p>
+        <p>{{hoteDetailList.address}}</p>
+        <!-- <p class="note"><i class="iconfont iconfeiji"></i> 距东王庄机场驾车14.6公里 约39分钟</p> -->
       </div>
     </div>
     <div class="room">
@@ -58,7 +62,7 @@
         </div>
       </div>
       <div class="item-container">
-        <div v-for="item in data" :key="item.a">
+        <div v-for="item in roomArry" :key="item.a">
           <v-detail-item :info="item"></v-detail-item>
         </div>
       </div>
@@ -69,6 +73,7 @@
 
 <script>
   import detailItem from './detialItem'
+  import axios from 'axios'
   export default {
     components:{
       'v-detail-item':detailItem
@@ -76,6 +81,8 @@
     data() {
       return {
         title: '大同浩海国际酒店',
+        hoteDetailList:{},
+        roomArry:[],
         data:[
           {img:'',a:'单人间B',b:'21',c:'1张双人床1.5m',d:'无窗',price1:'126',price2:'124'},
           {img:'',a:'单人间A',b:'21',c:'1张双人床1.5m',d:'无窗',price1:'126',price2:'124'},
@@ -83,20 +90,45 @@
           {img:'',a:'单人间F',b:'21',c:'1张双人床1.5m',d:'无窗',price1:'126',price2:'124'}
         ]
       }
+    },
+    mounted(){
+      this.hoteDetailList = this.$route.query.hoteDetail
+      console.log(this.hoteDetailList,'hoteDetailList')
+      this.initRoomList()
+    },
+    methods:{
+      //获取酒店 房间列表
+      initRoomList(){
+        console.log('chufa')
+        let url = '/api/hotelRoomsList?hotel_id=6'
+        axios.get(url).then((res)=>{
+          if(res.status == 200){
+            console.log(res,'dddsss')
+            let roomList  = res.data
+            this.roomArry  = roomList.data
+          }
+        })
+      }
     }
   }
 </script>
 
 <style scoped lang="scss">
   .hotel-detail-container {
+    .header{
+      position: fixed;
+      width: 100%;
+      height: 0.4rem;
+      top:0;
+      z-index: 10000;
+    }
     .imgs {
       padding: 0.1rem;
+      padding-top:0.5rem;
       overflow: hidden;
-
       .img-cont {
         height: 1.5rem;
         border-radius: 0.15rem;
-
         img {
           width: 100%;
           height: 100%;

@@ -1,29 +1,30 @@
 <template>
   <div class="Hcontent">
     <div class="Hleft">
-      <img src="../assets/img/BJ.jpg">
+      <!-- <img src="../assets/img/BJ.jpg"> -->
+      <img :src="cityItem.imageUrl" alt="">
     </div>
     <div class="Hright">
       <div class="HTop">
         <div>
-          <span class="title">{{cityItem.hotelName}}</span><span class="mintitle">{{cityItem.hotelType}}</span>
+          <span class="title">{{cityItem.brandName}}</span><span class="mintitle">{{cityItem.starName}}</span>
         </div>
         <div>
-          <span class="title score">{{cityItem.hotelScore}}<i>分</i></span><span
-          class="medtitle">{{cityItem.hotelEvaluate}}</span><span class="mintitle">{{cityItem.reviewScore}}条点评</span>
+          <span class="title score">{{cityItem.scoreName}}<i>分</i></span>
+          <!-- <span class="medtitle">{{cityItem.hotelEvaluate}}</span><span class="mintitle">{{cityItem.reviewScore}}条点评</span> -->
         </div>
       </div>
       <div class="HBottom">
-        <div class="red ">提前{{cityItem.bookTime}}天预订</div>
+        <div class="red ">提前{{cityItem.bookInfo}}天预订</div>
         <div class="HBBottom">
           <span class="red">{{cityItem.bookFlage=='1'?'法定节假日不可预订':'法定节假日可预订'}}</span>
           <div class="price">
-            <span class="oldprice">¥{{cityItem.oldPrice}}起</span>
+            <span class="oldprice">¥{{cityItem.discountPrice}}起</span>
             <div class="nowpice">
-              <span class="newprice"><span class="fontSize">¥</span>{{cityItem.newPrice}}<span class="fontSize">起</span> <i class="iconfont iconnext"></i></span>
+              <span class="newprice"><span class="fontSize">¥</span>{{cityItem.price}}<span class="fontSize">起</span> <i class="iconfont iconnext"></i></span>
               <div>
-                                <span class="reduce">立减¥{{cityItem.oldPrice/1 - cityItem.newPrice/1}}
-                                </span>
+                  <span class="reduce">立减¥{{cityItem.discountPrice/1 - cityItem.price/1}}
+                  </span>
               </div>
 
             </div>

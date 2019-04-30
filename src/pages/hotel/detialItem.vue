@@ -1,11 +1,11 @@
 <template>
   <div class="item">
-    <div class="item-img"><img src="../../assets/img/1.jpg"></div>
+    <div class="item-img"><img :src="info.imageUrl"></div>
     <div class="item-info">
       <div class="book">
         <div class="book-tit">
-          <p>{{info.a}}</p>
-          <span>{{info.b}}m<sup>2</sup> {{info.c}} {{info.d}}</span>
+          <p>{{info.name}}</p>
+          <span>{{info.area}}m<sup>2</sup> {{info.bedinfo}} {{info.d}}</span>
         </div>
         <div class="book-img" @click="goBook">
           <p>订</p>
@@ -14,8 +14,8 @@
       </div>
       <div class="book-price">
         <div class="book-price-top">
-          <del>￥{{info.price1}}</del>
-          <span><i>￥</i>{{info.price2}}</span>起<i class="iconfont icondown"></i>
+          <del>￥{{info.price}}</del>
+          <span><i>￥</i>{{info.discountPrice}}</span>起<i class="iconfont icondown"></i>
         </div>
         <p>立减</p>
       </div>
@@ -25,7 +25,7 @@
 
 <script>
     export default {
-        name: "detialItem",
+      name: "detialItem",
       props:['info'],
       data(){
           return{}

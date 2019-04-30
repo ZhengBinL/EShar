@@ -9,15 +9,15 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {  // 代理规则
-      // '/api': {
-      //   // target:'http://47.94.103.215:8888',
-      //   target:'http://115.28.203.39:9090',    //接口地址
-      //   secure: false,    // 如果是https接口，需要配置这个参数
-      //   changeOrigin: true,  // 如果接口跨域，需要进行这个参数配置
-      //   pathRewrite: {
-      //     '^/api': ''    //这里理解成用‘/api’代替target里面的地址，后面组件中我们掉接口时直接用api代替 比如我要调用'http://40.00.100.100:3002/user/add'，直接写‘/api/user/add’即可
-      //   }
-      // },
+      '/api': {
+        // target:'http://47.94.103.215:8888',
+        target:'http://192.168.1.128:8081/api',    //接口地址
+        secure: false,    // 如果是https接口，需要配置这个参数
+        changeOrigin: true,  // 如果接口跨域，需要进行这个参数配置
+        pathRewrite: {
+          '^/api': ''    //这里理解成用‘/api’代替target里面的地址，后面组件中我们掉接口时直接用api代替 比如我要调用'http://40.00.100.100:3002/user/add'，直接写‘/api/user/add’即可
+        }
+      },
     },
 
     // Various Dev Server settings

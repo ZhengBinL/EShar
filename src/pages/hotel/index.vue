@@ -9,8 +9,8 @@
     <mt-navbar class="select-nav" v-model="selected" @click.native.prevent="clickItem">
       <mt-tab-item id="1">综合筛选<span class="iconfont "
                                     :class="popupVisible?'icondown':'iconupward'"></span></mt-tab-item>
-      <mt-tab-item id="2">位置区域<span class="iconfont "
-                                    :class="popupVisible1?'icondown':'iconupward'"></span></mt-tab-item>
+      <!-- <mt-tab-item id="2">位置区域<span class="iconfont "
+                                    :class="popupVisible1?'icondown':'iconupward'"></span></mt-tab-item> -->
       <mt-tab-item id="3">价格/星级<span class="iconfont "
                                      :class="popupVisible2?'icondown':'iconupward'"></span></mt-tab-item>
       <mt-tab-item id="4">智能排序<span class="iconfont " :class="selected==4?'icondown':'iconupward'"></span>
@@ -27,14 +27,34 @@
           popup-transition="popup-fade">
           <div class="showPop">
             <div class='tit'><span>品牌</span></div>
-            <div class="show-item" v-for="item in chain" :key="item.id">
+            <div class="show-item">
               <div class="item-tit">
-                <span>{{item.title}}</span>
+                <span>高端连锁</span>
               </div>
-              <div class="item-info">
-                <span :class="item.name==cityFlag?'active':''"
-                      v-for="item in item.name" :key="item.id"
-                      @click="handleSelect(item)">{{item.name}}</span>
+              <div class="item-info" >
+                <span v-if="item.remark == '1'" :class="item.dictLabel==cityFlag?'active':''"
+                      v-for="item in filterArry" :key="item.id"
+                      @click="handleSelect(item)">{{item.dictLabel}}</span>
+              </div>
+            </div>
+            <div class="show-item">
+              <div class="item-tit">
+                 <span>中端连锁</span>
+              </div>
+              <div class="item-info" >
+                <span v-if="item.remark == '2'" :class="item.dictLabel==cityFlag?'active':''"
+                      v-for="item in filterArry" :key="item.id"
+                      @click="handleSelect(item)">{{item.dictLabel}}</span>
+              </div>
+            </div>
+            <div class="show-item">
+              <div class="item-tit">
+                <span>快捷连锁</span>
+              </div>
+              <div class="item-info" >
+                <span v-if="item.remark == '3'" :class="item.dictLabel==cityFlag?'active':''"
+                      v-for="item in filterArry" :key="item.id"
+                      @click="handleSelect(item)">{{item.dictLabel}}</span>
               </div>
             </div>
             <div class="btns">
@@ -44,7 +64,7 @@
           </div>
         </mt-popup>
       </mt-tab-container-item>
-      <mt-tab-container-item id="2">
+      <!-- <mt-tab-container-item id="2">
         <mt-popup
           v-model="popupVisible1"
           :modal="popupVisible1"
@@ -61,7 +81,7 @@
             </div>
           </div>
         </mt-popup>
-      </mt-tab-container-item>
+      </mt-tab-container-item> -->
       <mt-tab-container-item id="3">
         <mt-popup
           v-model="popupVisible2"
@@ -77,8 +97,8 @@
             <div>
               <div class="star-tit"><span>星级</span></div>
               <div class="level">
-                <span :class="item.id==actionFlag?'active':''" v-for="item in star" :key="item.id"
-                      @click="checkAction(item)">{{item.name}}</span>
+                <span :class="item.dictLabel==actionFlag?'active':''" v-for="item in starArry" :key="item.id"
+                      @click="checkAction(item)">{{item.dictLabel}}</span>
               </div>
             </div>
             <div class="btns">
@@ -99,16 +119,16 @@
         <!--</div>-->
       </mt-tab-container-item>
     </mt-tab-container>
-    <div class="condition">
+    <!-- <div class="condition">
       <div class="condition-cont">
         <span :class="hasClass(item)" @click="clickItemSelect(item)" v-for="item in sortArr" :key="item">{{item}}</span>
       </div>
-    </div>
+    </div> -->
     <ul v-infinite-scroll="loadMore"
         infinite-scroll-disabled="loading"
         infinite-scroll-distance="10"
         class="padd23">
-      <li v-for="item in cityArry" :key="item.id" @click="handleDetail(item.id)">
+      <li v-for="item in cityArry" :key="item.id" @click="handleDetail(item)">
         <v-cityItem :cityItem="item"></v-cityItem>
       </li>
     </ul>
@@ -118,7 +138,7 @@
 
 <script>
   import cityItem from "../../components/cityItem";
-
+  import axios from 'axios'
   export default {
     components: {
       "v-cityItem": cityItem
@@ -131,10 +151,12 @@
         loading: true,
         rangeValue: 0,
         actionFlag: 0,
-        cityFlag: 0,
+        cityFlag: '',
         distanceFlag: 0,
         chooseCity: {},
         chooseDistance: {},
+        filterArry:[],
+        starArry:[],
         title: "请选择酒店",
         link: "/",
         selected: "4",
@@ -312,11 +334,90 @@
             bookFlage: "1",
             oldPrice: 126,
             newPrice: 124
+          },
+          {
+            id: 4,
+            imgLink: "../assets/img/BJ.jpg",
+            hotelName: "大同浩海国际酒店",
+            hotelType: "高档型",
+            hotelScore: "4.7",
+            hotelEvaluate: "非常好",
+            reviewScore: "486",
+            bookTime: "2",
+            bookFlage: "1",
+            oldPrice: 126,
+            newPrice: 124
+          },
+          {
+            id: 5,
+            imgLink: "../assets/img/BJ.jpg",
+            hotelName: "大同浩海国际酒店",
+            hotelType: "高档型",
+            hotelScore: "4.7",
+            hotelEvaluate: "非常好",
+            reviewScore: "486",
+            bookTime: "2",
+            bookFlage: "1",
+            oldPrice: 126,
+            newPrice: 124
+          },
+          {
+            id: 6,
+            imgLink: "../assets/img/BJ.jpg",
+            hotelName: "大同浩海国际酒店",
+            hotelType: "高档型",
+            hotelScore: "4.7",
+            hotelEvaluate: "非常好",
+            reviewScore: "486",
+            bookTime: "2",
+            bookFlage: "1",
+            oldPrice: 126,
+            newPrice: 124
           }
         ]
       };
     },
+    mounted(){
+      this.initList()
+      this.filterAll()
+      this.priceStar()
+    },
     methods: {
+      //带有结果的查询
+      initList(){
+        console.log('chufa')
+        let url = '/api/hotelList'
+        axios.get(url).then((res)=>{
+          if(res.status == 200){
+            console.log(res,'dddsss')
+            let cityList  = res.data
+            this.cityArry  = cityList.data
+          }
+        })
+      },
+      //综合筛选
+      filterAll(){
+        let url = '/api/brandList'
+        axios.get(url).then((res)=>{
+          if(res.status == 200){
+            console.log(res,'dddsss')
+            let filterList  = res.data
+            this.filterArry  = filterList.data
+          }
+        })
+      },
+      //位置区域
+      //价格星级
+      priceStar(){
+        let url = '/api/starList'
+        axios.get(url).then((res)=>{
+          if(res.status == 200){
+            console.log(res,'dddsss')
+            let starList  = res.data
+            this.starArry  = starList.data
+          }
+        })
+      },
       //切换tab
       clickItem() {
         if (this.selected == "1") {
@@ -363,14 +464,15 @@
       //选择品牌
       handleSelect(item) {
         console.log(item, 'item')
-        this.chooseCity = item
-        this.actionFlag = item.name;
+        this.chooseCity = item;
+        this.cityFlag = item.dictLabel;
+        this.actionFlag = item.dictLabel;
       },
       //清空
       handleClear() {
         this.chooseCity = {};
-        this.cityFlag = 0;
-        this.actionFlag = 0;
+        this.cityFlag = '';
+        this.actionFlag = '';
         this.chooseDistance = {};
         this.distanceFlag = 0;
         this.rangeValue = 0;
@@ -388,13 +490,13 @@
       },
       //切换星级状态
       checkAction(item) {
-        this.actionFlag = item.id;
-        this.actionName = item.name
+        this.actionFlag = item.dictLabel;
+        // this.actionName = item.name
       },
       //酒店详情
       handleDetail(itemId) {
         console.log(itemId)
-        this.$router.push({name: 'hoteDetail', query: {hotelId: itemId}})
+        this.$router.push({name: 'hoteDetail', query: {hoteDetail: itemId}})
       }
     }
   };
@@ -408,7 +510,7 @@
     padding: 0.15rem 0;
   }
   .hotel ul.padd23 {
-    padding-top: 0.46rem;
+    padding-top: 0.93rem;
   }
 
 
@@ -416,7 +518,7 @@
     width: 100%;
     position: absolute;
     background: #fff;
-    top: 0;
+    top: 90px;
     left: 0;
     transform: translate(0, 0);
     backface-visibility: hidden;
@@ -441,14 +543,19 @@
 <style scoped lang='scss'>
   .hotel {
     height: 100%;
-
     .header {
-      position: relative;
+      position: fixed;
+      width: 100%;
+      height: 0.4rem;
+      top:0;
       z-index: 10000;
     }
 
     .select-nav {
-      position: relative;
+      position: fixed;
+      width: 100%;
+      height: 0.5rem;
+      top:0.4rem;
       z-index: 10000;
       border-bottom: 0.02rem solid #f2f3f4;
     }
