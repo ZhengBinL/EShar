@@ -154,6 +154,7 @@
       hotelList(){
         homeList().then((res)=>{
           if(res.status == 200){
+            console.log(res,'res')
             let cityList  = res.data
             this.cityArry  = cityList.data
           }

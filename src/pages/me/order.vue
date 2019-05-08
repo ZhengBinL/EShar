@@ -8,10 +8,10 @@
     </mt-header>
     <mt-navbar v-model="selected" @click.native.prevent="clickItem" class="navbar">
       <mt-tab-item id="1">全部</mt-tab-item>
-      <mt-tab-item id="2">代付款</mt-tab-item>
+      <mt-tab-item id="2">待付款</mt-tab-item>
       <mt-tab-item id="3">处理中</mt-tab-item>
       <mt-tab-item id="4">待出行</mt-tab-item>
-      <!-- <mt-tab-item id="5">待评价</mt-tab-item> -->
+      <mt-tab-item id="5">待评价</mt-tab-item>
       <mt-tab-item id="6">退款/售后</mt-tab-item>
     </mt-navbar>
 
@@ -37,11 +37,11 @@
           <v-order-item :itemInfo="item"></v-order-item>
         </div>
       </mt-tab-container-item>
-      <!-- <mt-tab-container-item id="5">
+      <mt-tab-container-item id="5">
         <div v-for="item in orderArry" :key="item.id" v-if="item.orderStatus==4">
           <v-order-item :itemInfo="item"></v-order-item>
         </div>
-      </mt-tab-container-item> -->
+      </mt-tab-container-item>
       <mt-tab-container-item id="6">
         <div v-for="item in orderArry" :key="item.id" v-if="item.orderStatus==5">
           <v-order-item :itemInfo="item"></v-order-item>
@@ -53,6 +53,8 @@
 
 <script>
   import orderItem from './orderItem'
+  import {getOrder} from '../../axios/me/order.js'
+
   export default {
     name: 'order',
     components: {
@@ -61,21 +63,23 @@
     data() {
       return {
         selected: '1',
-        orderArry:[]
+        orderArry: []
       }
     },
-    mounted(){
+    mounted() {
       // this.initList()
+    },
+    created() {
+      this.initList()
     },
     methods: {
       //获取我的订单列表
-      initList(){
-        let url = '/api/ordersList?user_id=4'
-        $http.get(url).then((res)=>{
-          if(res.status == 200){
-            // console.log(res,'ordersList')
-            let orderList  = res.data
-            this.orderArry  = orderList.data
+      initList() {
+        getOrder('4').then(res => {
+          console.log(res, 'order')
+          if (res.status == 200) {
+            let result = res.data
+            this.orderArry = result.data
           }
         })
       },
@@ -93,18 +97,20 @@
       position: fixed;
       width: 100%;
       height: 0.4rem;
-      top:0;
+      top: 0;
       z-index: 10000;
     }
-    .navbar{
+
+    .navbar {
       position: fixed;
       width: 100%;
       height: 0.5rem;
-      top:0.4rem;
+      top: 0.4rem;
       z-index: 10000;
     }
-    .order-contant{
-      padding-top:0.93rem;
+
+    .order-contant {
+      padding-top: 0.93rem;
     }
 
   }

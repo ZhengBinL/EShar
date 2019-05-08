@@ -33,7 +33,7 @@
 
 <script>
   export default {
-    name: "oederItem",
+    name: "orderItem",
     props: ['itemInfo'],
     data(){
       return {
@@ -145,7 +145,8 @@
       .mint-button--default {
         color: #656b79;
         background-color: #fff;
-        box-shadow: 0 0 1px #b8bbbf;
+        box-shadow:none;
+        border: 1px solid #e4e4e4;
         display: inline-block;
         font-size: 0.12rem;
         padding: 0 0.12rem;
