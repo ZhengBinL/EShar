@@ -7,11 +7,11 @@
     </mt-header>
 
     <mt-navbar class="select-nav" v-model="selected" @click.native.prevent="clickItem">
-      <mt-tab-item id="1">综合筛选<span class="iconfont "
+      <mt-tab-item id="1">{{cityFlag?cityFlag:'综合筛选'}}<span class="iconfont "
                                     :class="popupVisible?'icondown':'iconupward'"></span></mt-tab-item>
       <!-- <mt-tab-item id="2">位置区域<span class="iconfont "
                                     :class="popupVisible1?'icondown':'iconupward'"></span></mt-tab-item> -->
-      <mt-tab-item id="3">价格/星级<span class="iconfont "
+      <mt-tab-item id="3">{{actionFlag?actionFlag:'价格/星级'}}<span class="iconfont "
                                      :class="popupVisible2?'icondown':'iconupward'"></span></mt-tab-item>
       <mt-tab-item id="4">智能排序<span class="iconfont " :class="selected==4?'icondown':'iconupward'"></span>
       </mt-tab-item>
@@ -138,7 +138,7 @@
 
 <script>
   import cityItem from "../../components/cityItem";
-  import axios from 'axios'
+  import { homeList,searchList,starList } from "@/axios/home/home.js";
   export default {
     components: {
       "v-cityItem": cityItem
@@ -294,6 +294,7 @@
           "终点房",
           "已收藏"
         ],
+        citySearch:"",
         sureSort:[],//选中的项存放变量
         cityArry: [
           {
@@ -378,6 +379,7 @@
       };
     },
     mounted(){
+      this.citySearch = this.$route.query.cityName
       this.initList()
       this.filterAll()
       this.priceStar()
@@ -385,11 +387,8 @@
     methods: {
       //带有结果的查询
       initList(){
-        console.log('chufa')
-        let url = '/api/hotelList'
-        axios.get(url).then((res)=>{
+        homeList().then((res)=>{
           if(res.status == 200){
-            console.log(res,'dddsss')
             let cityList  = res.data
             this.cityArry  = cityList.data
           }
@@ -397,10 +396,8 @@
       },
       //综合筛选
       filterAll(){
-        let url = '/api/brandList'
-        axios.get(url).then((res)=>{
+        searchList().then((res)=>{
           if(res.status == 200){
-            console.log(res,'dddsss')
             let filterList  = res.data
             this.filterArry  = filterList.data
           }
@@ -409,10 +406,8 @@
       //位置区域
       //价格星级
       priceStar(){
-        let url = '/api/starList'
-        axios.get(url).then((res)=>{
+        starList().then((res)=>{
           if(res.status == 200){
-            console.log(res,'dddsss')
             let starList  = res.data
             this.starArry  = starList.data
           }
@@ -436,11 +431,9 @@
       },
       // 点击切换下面的选项
       clickItemSelect(val){
-        console.log(val)
         if(this.sureSort.indexOf(val)==-1){
           this.sureSort.push(val)
         }
-        // console.log(this.sureSort)
       },
       hasClass(val){
         let flag='';
@@ -463,10 +456,9 @@
       },
       //选择品牌
       handleSelect(item) {
-        console.log(item, 'item')
         this.chooseCity = item;
         this.cityFlag = item.dictLabel;
-        this.actionFlag = item.dictLabel;
+        // this.actionFlag = item.dictLabel;
       },
       //清空
       handleClear() {
@@ -480,8 +472,6 @@
       //确定
       handleChose(s) {
         this[s] = !this[s]
-        console.log(s)
-        console.log(this.chooseCity, 'd')
       },
       //选择区域
       handleDistance(s) {
@@ -495,7 +485,6 @@
       },
       //酒店详情
       handleDetail(itemId) {
-        console.log(itemId)
         this.$router.push({name: 'hoteDetail', query: {hoteDetail: itemId}})
       }
     }

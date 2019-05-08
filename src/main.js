@@ -7,10 +7,12 @@ import router from './router'
 import './assets/scss/index.scss'
 import './assets/js/rem.js'
 import handleDateTime from './assets/js/handle-date-time.tools.js';
+import { MessageBox } from 'mint-ui';
 
 
 //引入MintUI
 Vue.use(MintUI)
+Vue.component(MessageBox)
 
 //  这样就可以通过$http发起请求了
 Vue.prototype.$http = http;

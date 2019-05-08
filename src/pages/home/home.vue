@@ -21,9 +21,8 @@
           <span>我的附近</span>
         </div>
       </div>
-      <mt-cell class="search-item" is-link @click.native="switchDayFlag">
-        <div class="fontSize">3.16<span class="gray">今天</span> —<span class="minBorder">1晚</span>— 3.17<span
-          class="gray">明天</span></div>
+      <mt-cell class="search-item" is-link @click.native="switchDayFlag('')">
+        <div class="fontSize">{{startDay}} —<span class="minBorder">{{lengthDay}}晚</span>— {{endDay}}</div>
       </mt-cell>
       <mt-cell class="search-item" :title="titleSearch" :label="titleSearch?'':'住北京的人都在搜：王府井'" is-link
                @click.native="switchSearchFlag"></mt-cell>
@@ -35,16 +34,16 @@
     </div>
     <div class="content">
       <div class="selfButton">
-        <mt-button class="imgButton">
+        <mt-button class="imgButton" @click.native="citySearch('bj')">
           <img src="../../assets/img/bj1.jpg" slot="icon">
         </mt-button>
-        <mt-button class="imgButton">
+        <mt-button class="imgButton" @click.native="citySearch('sh')">
           <img src="../../assets/img/sh.jpg" slot="icon">
         </mt-button>
-        <mt-button class="imgButton">
+        <mt-button class="imgButton" @click.native="citySearch('gz')">
           <img src="../../assets/img/gz.jpg" slot="icon">
         </mt-button>
-        <mt-button class="imgButton">
+        <mt-button class="imgButton" @click.native="citySearch('sz')">
           <img src="../../assets/img/sz.jpg" slot="icon">
         </mt-button>
       </div>
@@ -77,9 +76,7 @@
   import vStar from "./star";
   import vDaytime from './daytime'
   import vSearch from './search'
-  // import http from '@/axios/common/http'
-  // import {apiUrl} from '@/axios/common/common.js'
-  import axios from 'axios'
+  import { homeList } from "@/axios/home/home.js";
   export default {
     components: {
       "v-cityItem": cityItem,
@@ -144,6 +141,9 @@
             newPrice: 124
           }
         ],
+        startDay:this.handleDateTime.getDateTime().substr(5, 5).split('-').join('.'),
+        endDay:this.handleDateTime.getDateTime('',1).substr(5, 5).split('-').join('.'),
+        lengthDay:1
       };
     },
     mounted(){
@@ -152,18 +152,14 @@
     methods: {
       //酒店列表
       hotelList(){
-        console.log('chufa')
-        let url = '/api/hotelList'
-        axios.get(url).then((res)=>{
+        homeList().then((res)=>{
           if(res.status == 200){
-            console.log(res,'dddsss')
             let cityList  = res.data
             this.cityArry  = cityList.data
           }
         })
       },
       handleCity() {
-        debugger;
         this.$router.push({ name: "city" });
       },
       handleGosearch() {
@@ -174,13 +170,19 @@
       },
       //选择城市切换
       switchCityFlag(item){
-        console.log(item)
         item&&(this.titleCity = item.title);
         this.cityFlag = !this.cityFlag;
       },
       //选择日期切换
-      switchDayFlag(){
+      switchDayFlag(item){
+        if(item){
+          this.startDay = item.selectedData[0].split('-').splice(1).join('.')
+          this.endDay = item.selectedData[item.selectedData.length-1].split('-').splice(1).join('.')
+          this.lengthDay = item.selectedData.length-1
+        }
         this.dayFlag = !this.dayFlag;
+
+        
       },
       //选择最热搜索切换
       switchSearchFlag(item){
@@ -189,14 +191,16 @@
       },
       //选择价格星级切换
       switchStarFlag(item){
-        console.log(item,'item')
         item.name&&(this.titlePN = `¥${item.price}-¥2000+/${item.name}`);
         this.starFlag = !this.starFlag;
       },  
       //酒店详情
       handleDetail(item){
-        console.log(item)
         this.$router.push({name:'hoteDetail',query:{hoteDetail:item}})
+      },
+      //城市搜索
+      citySearch(item){
+        this.$router.push({name:'hotel',query:{cityName:item}})
       }
     }
   };

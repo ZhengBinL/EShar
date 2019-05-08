@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="content">
-          <span v-for="item in history" :key="item.id" class="spanBorder" @click="chooseHotel(item)">{{item.name}}</span>
+          <span v-for="item in history" :key="item" class="spanBorder" @click="chooseHistoryHotel(item)">{{item}}</span>
         </div>
       </div>
       <div class="show">
@@ -43,8 +43,9 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { MessageBox } from 'mint-ui';
+  import axios from 'axios'
+  import { searchList } from "@/axios/home/home.js";
+  import { MessageBox } from 'mint-ui';
   export default {
     props:{
         searchFlag:{
@@ -57,64 +58,59 @@ import { MessageBox } from 'mint-ui';
         checkShow:true,
         citySearch: [],
         searchValue: '',
-        history: [
-          {
-            id: 0,
-            name: "同理大酒店"
-          },
-          {
-            id: 1,
-            name: "同理大酒店1"
-          },
-          {
-            id: 2,
-            name: "同理大酒店2"
-          },
-          {
-            id: 3,
-            name: "同理大酒店3"
-          },
-          {
-            id: 4,
-            name: "同理大酒店4"
-          },
-          {
-            id: 5,
-            name: "同理大酒店5"
-          },
-          {
-            id: 6,
-            name: "同理大酒店6"
-          },
-        ],
-        hotHotel:[]
+        history:[],
+        oldHistory:"",
+        hotHotel:[],
+        searchArray:[],
+        oldSearch:''
       }
     },
     mounted(){
       // this.checkShow = false
       this.handleBrandList()
+      this.historyList()
     },
     methods:{
+      //获取搜索历史
+      historyList(){
+        // this.history = localStorage.getItem('oldSearch').split(',')
+      },
       //热门品牌
       handleBrandList(){
-        let url = '/api/brandList'
-        axios.get(url).then((res)=>{
+        searchList().then((res)=>{
           if(res.status == 200){
-            console.log(res,'dddsss')
             let hotList  = res.data
             this.hotHotel  = hotList.data
           }
         })
       },
+      //去重
+      unrepeat(array){
+          var temp = []; //一个新的临时数组
+          for(var i = 0; i < array.length; i++){
+              if(temp.indexOf(array[i]) == -1){
+                  temp.push(array[i]);
+              }
+          }
+          return temp;
+      },
       //搜索
         handleSearch(){
-            console.log("搜索",this.searchValue)
+          this.searchArray.push(this.searchValue)
+          this.searchArray = this.unrepeat(this.searchArray)
+          if(this.searchArray.length>9){
+            this.searchArray.shift()
+          }
+          this.history = this.searchArray
+          this.oldSearch = this.searchArray.join(',')
+          localStorage.setItem("oldSearch",this.oldSearch); 
         },
         //清空
         clearValue(){
-          //发送请求，渲染页面
-          console.log("请求")
-          
+          localStorage.clear()
+          this.searchArray=[]
+          this.oldSearch = ''
+          this.history=[]
         },
         //显示/隐藏
         checkUp(){
@@ -122,10 +118,20 @@ import { MessageBox } from 'mint-ui';
         },
         //选择酒店
         chooseHotel(item){
-          console.log(item,'a')
           MessageBox.confirm('确定选择'+item.dictLabel+'?').then(action => {
                 this.$emit('switchSearch',{
                   ...item
+                })
+            },()=>{
+                console.log(2)
+            })
+        },
+        chooseHistoryHotel(item){
+          let itemObj ={}
+          itemObj.dictLabel = item
+            MessageBox.confirm('确定选择'+item+'?').then(action => {
+                this.$emit('switchSearch',{
+                   ...itemObj
                 })
             },()=>{
                 console.log(2)

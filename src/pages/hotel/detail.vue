@@ -4,7 +4,6 @@
       <router-link to="/" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
-      <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
     <div class="imgs">
       <div class="img-cont">
@@ -73,37 +72,27 @@
 
 <script>
   import detailItem from './detialItem'
-  import axios from 'axios'
+  import {hotelRoomList} from '@/axios/hotel/index.js'
   export default {
     components:{
       'v-detail-item':detailItem
     },
     data() {
       return {
-        title: '大同浩海国际酒店',
         hoteDetailList:{},
         roomArry:[],
-        data:[
-          {img:'',a:'单人间B',b:'21',c:'1张双人床1.5m',d:'无窗',price1:'126',price2:'124'},
-          {img:'',a:'单人间A',b:'21',c:'1张双人床1.5m',d:'无窗',price1:'126',price2:'124'},
-          {img:'',a:'单人间D',b:'21',c:'1张双人床1.5m',d:'无窗',price1:'126',price2:'124'},
-          {img:'',a:'单人间F',b:'21',c:'1张双人床1.5m',d:'无窗',price1:'126',price2:'124'}
-        ]
+        data:[]
       }
     },
     mounted(){
       this.hoteDetailList = this.$route.query.hoteDetail
-      console.log(this.hoteDetailList,'hoteDetailList')
       this.initRoomList()
     },
     methods:{
       //获取酒店 房间列表
       initRoomList(){
-        console.log('chufa')
-        let url = '/api/hotelRoomsList?hotel_id=6'
-        axios.get(url).then((res)=>{
+        hotelRoomList('6').then((res)=>{
           if(res.status == 200){
-            console.log(res,'dddsss')
             let roomList  = res.data
             this.roomArry  = roomList.data
           }
@@ -291,10 +280,6 @@
             background: #f4f4f4;
           }
         }
-      }
-
-      .item-container {
-
       }
     }
   }

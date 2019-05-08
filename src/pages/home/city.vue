@@ -7,25 +7,24 @@
                 </mt-header>
             </div>
             <div class="search">
-                <mt-search v-model="searchValue" @keyup.enter.native="handleSearch" cancel-text="取消" placeholder="中文/拼音/首字母" autofocus :result="filterResult">
+                <mt-search v-model="searchValue" @keyup.native="handleSearch" cancel-text="取消" placeholder="中文/拼音/首字母" autofocus :result="filterResult">
+                      <mt-cell v-for="item in resultSearch" :title="item.name" @click.native="chooseCity(item)"></mt-cell>
                 </mt-search>
             </div>
             <div class="searchList">
                <mt-index-list>
-                    <mt-index-section v-for="item in title" :key="item" :index="item">
-                      <div v-if="item=='当前'">
+                    <mt-index-section v-for="item in allCityArray" :key="item.id" :index="item.name">
+                      <div v-if="item.name=='当前'">
                         <div class="current">
-                          <p><span class="iconfont iconlocation"></span> {{current}}</p>
-                          <p class="gray">{{currPostion}}</p>
+                          <p><span class="iconfont iconlocation"></span> {{item.cities[0].current}}</p>
+                          <p class="gray">{{item.cities[0].currPostion}}</p>
                         </div>
                       </div>
-                      <div v-else-if="item=='热门'">
-                        <div class="hot"><span v-for="(item,index) in hotInfo" :key="index">{{item}}</span></div>
+                      <div v-else-if="item.name=='热门'">
+                        <div class="hot"><span v-for="(item,index) in item.cities" :key="index" @click="chooseCity(item)">{{item.name}}</span></div>
                       </div>
                       <div v-else>
-                        <mt-cell title="Aaron1" @click.native="chooseCity('Aaron1')"></mt-cell>
-                        <mt-cell title="Aaron2"></mt-cell>
-                        <mt-cell title="Aaron3"></mt-cell>
+                        <mt-cell :title="item.name" v-for="(item,index) in item.cities" :key="index" @click.native="chooseCity(item)"></mt-cell>
                       </div>
                     </mt-index-section>
                 </mt-index-list>
@@ -35,6 +34,7 @@
 </template>
 
 <script>
+import {cityArray} from '@/axios/common/city.js'
 import { MessageBox } from 'mint-ui';
 export default {
     props:{
@@ -45,7 +45,6 @@ export default {
     },
     data(){
         return{
-            title:["当前","热门","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
             city:[
                 {
                     id: 1,
@@ -55,9 +54,8 @@ export default {
             ],
             searchValue:'',
             citySearch:[],
-          current:'北京',
-          currPostion:'北京站',
-          hotInfo:["北京","上海","广州","深圳","成都","杭州","台北","武汉","香港","澳门","西安","重庆","青岛","南京","厦门","大连","天津","三亚"]
+            allCityArray:[],
+            resultSearch:[]
         }
     },
     computed:{
@@ -67,21 +65,25 @@ export default {
     },
     mounted(){
         //首次渲染
-        // this.hasAllCity()
+        this.allCityArray = cityArray
     },
     methods:{
         //搜索
         handleSearch(){
-            // console.log("搜索",this.searchValue)
-        },
-        hasAllCity(){
-
+            this.resultSearch = []
+           for(var i =2;i<this.allCityArray.length;i++){
+               for(var j=0;j<this.allCityArray[i].cities.length;j++){
+                   if(this.allCityArray[i].cities[j].tags.indexOf(this.searchValue.toUpperCase()) !== -1){
+                       this.resultSearch.push(this.allCityArray[i].cities[j])
+                   }
+               }
+           }
+           this.resultSearch = this.resultSearch.slice(0,10)
         },
         chooseCity(title){
-            // console.log(title,'a')
-            MessageBox.confirm('确定选择'+title+'?').then(action => {
+            MessageBox.confirm('确定选择'+title.name+'?').then(action => {
                 this.$emit('switchCity',{
-                    title
+                    title:title.name
                 })
             },()=>{
                 console.log(2)
@@ -115,6 +117,13 @@ export default {
    font-size: 0.12rem;
    color: rgba(32,35,37,.6)
  }
+.city .mint-searchbar{
+    z-index: 9
+}
+.city .mint-search-list{
+    top:45px;
+    z-index: 5
+}
 </style>
 <style scoped lang="scss">
 .city{

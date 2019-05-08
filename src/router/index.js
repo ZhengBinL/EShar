@@ -55,6 +55,26 @@ const routes = [
     path: '/hotel/detail',
     name: 'hoteDetail',
     component: () => import ('@/pages/hotel/detail')
+  },
+  {
+    path: '/login/login',
+    name: 'login',
+    component: () => import ('@/pages/login/login')
+  },
+  {
+    path: '/login/registered',
+    name: 'registered',
+    component: () => import ('@/pages/login/registered')
+  },
+  {
+    path: '/login/resetPassword',
+    name: 'resetPassword',
+    component: () => import ('@/pages/login/resetPassword')
+  },
+  {
+    path: '/login/resetword',
+    name: 'resetword',
+    component: () => import ('@/pages/login/resetword')
   }
 ]
 const router = new Router({

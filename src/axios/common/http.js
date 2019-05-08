@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { apiUrl} from '@/axios/common/common.js'
 // 配置API接口地址
-const root = apiUrl
+// const root = apiUrl
+const root = '/'
 
 
 axios.interceptors.request.use(config => {    // 这里的config包含每次请求的内容
