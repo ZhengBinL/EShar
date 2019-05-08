@@ -33,7 +33,6 @@
       methods:{
           // 预定
         goBook(){
-          console.log(111)
           this.$router.push({name: 'hoteInfo', query: {hotelId: 1}})
         }
       }

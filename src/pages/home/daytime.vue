@@ -13,8 +13,8 @@
 
 <script>
 import calendar from '../../components/calendar.vue';
-
 export default {
+
   components: {
       calendar: calendar
   },
@@ -25,25 +25,32 @@ export default {
       },
   },
   data(){
+    let _this = this
       return{
         config: {
           mode: 'future',
-          startDate: '2019-01-01',
-          endDate: '2019-12-31',
-          disabledData: [{startDate: '2019-06-01', endDate: '2019-12-31'}],
+          startDate: this.handleDateTime.getDateTime().substr(0, 10),
+          endDate:this.handleDateTime.getDateTime('',90).substr(0, 10),
+          disabledData: [{startDate:this.handleDateTime.getDateTime('',90).substr(0, 10), endDate: '2019-12-31'}],
           initData: [
             {date: '2019-04-30', status: 'disabled', type: 'work', info: '100%'},
             {date: '2019-05-01', flag: 'holiday', type: 'rest', note: '五一'},
             {date: '2019-05-02', flag: 'holiday', type: 'rest'},
             {date: '2019-06-01', flag: 'holiday', type: 'rest',note:'六一'}
           ],
-          onSelected(selectedData) {
-            console.log('selectedData', selectedData);
+          onSelected(selectedData) {  
+              _this.$emit('switchDay',{selectedData})
           }
         }
       }
   },
+  mounted(){
+    // this.initTime()
+  },
   methods:{
+    initTime(){
+
+    },
     goBack(){
       this.$emit('switchDay')
     }

@@ -56,11 +56,11 @@
       },
       // 删除订单
       deleteOrder(id) {
-        console.log('删除订单', id)
+        // console.log('删除订单', id)
       },
       // 退款
       refund(id) {
-        console.log('退款', id)
+        // console.log('退款', id)
       }
     }
   }

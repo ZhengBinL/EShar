@@ -5,7 +5,6 @@
         <router-link to="/" slot="left">
           <mt-button icon="back"></mt-button>
         </router-link>
-        <mt-button icon="more" slot="right"></mt-button>
       </mt-header>
     </div>
     <div class="info-container">
@@ -81,6 +80,12 @@ import editContainer from './meEditContainer'
             isShowChangeHeader: false,//是否显示更换头像弹出层
           }
       },
+      created(){
+        
+      },
+      mounted(){
+        // this.$router.push({name:"login"})
+      },
       methods:{
            // 编辑基本信息
         editBtn(){
@@ -92,16 +97,15 @@ import editContainer from './meEditContainer'
           this.isShowChangeHeader = true;
         },
         getCamera: function(){
-          console.log("打开照相机")
+          // console.log("打开照相机")
           this.isShowEdit=false
         },
         getLibrary: function(){
-          console.log("打开相册")
+          // console.log("打开相册")
           this.isShowEdit=false
         },
         // 隐藏编辑层
         hideChangeEdit(val){
-          console.log(val,'valvaval')
           this.isShowEdit=val
         },
         goOrder(){

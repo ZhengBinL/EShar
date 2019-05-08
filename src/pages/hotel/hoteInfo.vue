@@ -103,8 +103,7 @@
     },
     mounted() {
       this.hotelId = this.$route.query.hotelId
-      console.log(this.hotelId, 'xxx')
-      // this.initDetail()
+      this.initDetail()
     },
     methods: {
       //初始化

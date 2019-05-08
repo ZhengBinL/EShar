@@ -18,7 +18,7 @@
     </div>
     <div class="time">
       <p><span class="label">入住时间</span> <span>{{itemInfo.liveStartTime}}</span></p>
-      <p><span class="label">离店时间</span> <span>{{itemInfo.liveEndTime}}</span> <span>共{{itemInfo.roomCount}}间{{}}晚</span></p>
+      <p><span class="label">离店时间</span> <span>{{itemInfo.liveEndTime}}</span> <span>共{{itemInfo.roomCount}}间晚</span></p>
     </div>
     <div class="person">
       <p><span class="label">入住人</span><span>{{itemInfo.userName}}</span></p>
@@ -41,8 +41,6 @@
 </template>
 
 <script>
-  import {MessageBox} from 'mint-ui';
-
   export default {
     name: "orderDetail",
     data() {
@@ -65,35 +63,35 @@
     },
     mounted(){
        this.itemInfo = this.$route.params.itemInfo
-       console.log(this.itemInfo,'itemInfoddd')
+      //  console.log(this.itemInfo,'itemInfoddd')
     },
     methods: {
       //联系酒店
       contactHotel(){
         MessageBox.confirm(this.itemInfo.hotelTelephone,'联系酒店').then(action => {
-            console.log('ok')
+            // console.log('ok')
         })
         .catch(err => {
             if (err == 'cancel') {     //取消的回调
-              console.log(2);
+              // console.log(2);
             }
         })
       },
       //联系买家
       contactBuy(){
         MessageBox.confirm('123094832023','联系卖家').then(action => {
-          console.log('ok')
+          // console.log('ok')
         })
         .catch(err => {
             if (err == 'cancel') {     //取消的回调
-              console.log(2);
+              // console.log(2);
             }
         })
       },
       // 删除订单
       deleteOrder(id) {
-        console.log('删除订单', id)
-        console.log('删除订单')
+        // console.log('删除订单', id)
+        // console.log('删除订单')
         MessageBox.confirm('', {
           message: '确定删除订单?',//判断是否有手续费
           title: '删除订单',
@@ -102,18 +100,18 @@
         })
           .then(action => {
             if (action == 'confirm') {     //确认的回调
-              console.log(1);
+              // console.log(1);
             }
           })
           .catch(err => {
             if (err == 'cancel') {     //取消的回调
-              console.log(2);
+              // console.log(2);
             }
           });
       },
       // 退款
       refund() {
-        console.log('退款')
+        // console.log('退款')
         MessageBox.confirm('', {
           message: this.price ? '确定申请退款吗？<br/>手续费：￥' + this.price : '确定申请退款吗？',//判断是否有手续费
           title: '退款',
@@ -122,18 +120,18 @@
         })
           .then(action => {
             if (action == 'confirm') {     //确认的回调
-              console.log(1);
+              // console.log(1);
             }
           })
           .catch(err => {
             if (err == 'cancel') {     //取消的回调
-              console.log(2);
+              // console.log(2);
             }
           });
       },
       // 进入酒店详情
       goHotelDetail() {
-        console.log('进入酒店详情')
+        // console.log('进入酒店详情')
         this.$router.push({
           path: '/hotel/detail',
           name: 'hoteDetail',

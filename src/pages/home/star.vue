@@ -27,6 +27,7 @@
 
 <script>
   import axios from 'axios'
+  import { starList } from "@/axios/home/home.js";
   export default {
     props: {
       starFlag: {
@@ -40,28 +41,7 @@
         actionFlag: 0,
         actionName: '',
         modelFlag: false,
-        starArry: [
-          {
-            id: 0,
-            name: "不限"
-          },
-          {
-            id: 1,
-            name: "二星/经济"
-          },
-          {
-            id: 2,
-            name: "三星/舒适"
-          },
-          {
-            id: 3,
-            name: "四星/高档"
-          },
-          {
-            id: 4,
-            name: "五星/豪华"
-          }
-        ]
+        starArry: []
       }
     },
     mounted(){
@@ -69,11 +49,8 @@
     },
     methods: {
       starList(){
-        console.log('star')
-        let url = '/api/starList'
-        axios.get(url).then((res)=>{
+        starList().then((res)=>{
           if(res.status == 200){
-            console.log(res,'star')
             let starList  = res.data
             this.starArry  = starList.data
           }

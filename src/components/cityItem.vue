@@ -1,13 +1,13 @@
 <template>
   <div class="Hcontent">
     <div class="Hleft">
-      <!-- <img src="../assets/img/BJ.jpg"> -->
       <img :src="cityItem.imageUrl" alt="">
     </div>
     <div class="Hright">
       <div class="HTop">
         <div>
-          <span class="title">{{cityItem.brandName}}</span><span class="mintitle">{{cityItem.starName}}</span>
+          <span class="title">{{cityItem.brandName}}</span>
+          <span class="mintitle">{{cityItem.starName}}</span>
         </div>
         <div>
           <span class="title score">{{cityItem.scoreName}}<i>分</i></span>
@@ -39,20 +39,7 @@
   export default {
     props: {
       cityItem: {
-        type: Object,
-        default: {
-          id: 1,
-          imgLink: '../assets/img/BJ.jpg',
-          hotelName: '大同浩海国际酒店',
-          hotelType: '高档型',
-          hotelScore: '4.7',
-          hotelEvaluate: '非常好',
-          reviewScore: '486',
-          bookTime: '2',
-          bookFlage: '1',
-          oldPrice: 126,
-          newPrice: 124,
-        }
+        type: Object
       }
     },
     data() {
@@ -62,108 +49,94 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .Hcontent {
     display: flex;
     padding: 0.18rem 0.12rem 0;
+    .Hleft {
+      flex: 1;
+      img {
+        width: 1.1rem;
+        height: 1.1rem;
+        border-radius: 0.08rem;
+      }
+    }
+    .Hright {
+      flex: 3;
+      display: flex;
+      padding-left: 0.1rem;
+      flex-direction: column;
+      .HTop{
+        .title {
+          font-weight: 900;
+          font-size: 0.16rem;
+        }
+        .score {
+          font-size: 0.18rem;
+          font-weight: 400;
+          border-bottom: 0.02rem solid yellow;
+          i{
+            font-size: 0.13rem;
+            font-style: normal;
+          } 
+        }
+        .medtitle {
+          font-size: 0.13rem;
+          padding-left: 0.05rem;
+          font-weight: 500;
+        }
+        .mintitle {
+          font-size: 0.12rem;
+          color: #999;
+          padding-left: 0.05rem;
+        }
+      }
+      .HBottom {
+        margin-top: 0.1rem;
+        display: flex;
+        flex-direction: column;
+        .red{
+          font-size: 0.12rem;
+        }
+        .HBBottom {
+          display: flex;
+          padding-top: 0.05rem;
+          text-align: center;
+          justify-content: space-between;
+          .price {
+            display: flex;
+            .nowpice {
+              display: flex;
+              flex-direction: column;
+              padding-left: 0.05rem;
+              color: #ff5000;
+              font-weight: 600;
+              .newprice {
+                font-size: 0.16rem;
+                  .fontSize {
+                    font-size: 0.12rem;
+                    font-weight: 400;
+                    padding: 0 0.02rem;
+                  }
+              }
+            }
+            .oldprice {
+              text-decoration: line-through;
+              color: #999;
+              font-size: 0.12rem;
+            }
+            .reduce {
+              font-size: 0.12rem;
+              padding: 0 0.02rem;
+              font-weight: 400;
+              color: #ff5000;
+              border: 1px solid rgb(255, 188, 188) ;
+            }
+          }
+        }
+      }
+    }
   }
-
-  .Hleft {
-    flex: 1;
-  }
-
-  .Hleft img {
-    width: 1.1rem;
-    height: 1.1rem;
-    border-radius: 0.08rem;
-  }
-
-  .Hright {
-    flex: 3;
-    display: flex;
-    padding-left: 0.1rem;
-    flex-direction: column;
-  }
-
-  .title {
-    font-weight: 900;
-    font-size: 0.16rem;
-  }
-
-  .title.score {
-    font-size: 0.18rem;
-    font-weight: 400;
-    border-bottom: 0.02rem solid yellow;
-  }
-  .title.score i{
-    font-size: 0.13rem;
-    font-style: normal;
-  }
-
-  .medtitle {
-    font-size: 0.13rem;
-    padding-left: 0.05rem;
-    font-weight: 500;
-  }
-
-  .mintitle {
-    font-size: 0.12rem;
-    color: #999;
-    padding-left: 0.05rem;
-  }
-
-  .HBottom {
-    margin-top: 0.1rem;
-    display: flex;
-    flex-direction: column;
-  }
-  .HBottom .red{
-    font-size: 0.12rem;
-  }
-
-  .HBBottom {
-    display: flex;
-    padding-top: 0.05rem;
-    text-align: center;
-    justify-content: space-between
-  }
-
-  .HBBottom .price {
-    display: flex;
-  }
-
-  .HBBottom .price .nowpice {
-    display: flex;
-    flex-direction: column;
-    padding-left: 0.05rem;
-    color: #ff5000;
-    font-weight: 600;
-  }
-
-  .fontSize {
-    font-size: 0.12rem;
-    font-weight: 400;
-    padding: 0 0.02rem;
-  }
-
-  .reduce {
-    font-size: 0.12rem;
-    padding: 0 0.02rem;
-    font-weight: 400;
-    color: #ff5000;
-    border: 1px solid rgb(255, 188, 188) ;
-  }
-
-  .oldprice {
-    text-decoration: line-through;
-    color: #999;
-    font-size: 0.12rem;
-  }
-
-  .newprice {
-    font-size: 0.16rem;
-  }
-
   .newprice i.iconfont{
     display: inline-block;
     width: 0.13rem;

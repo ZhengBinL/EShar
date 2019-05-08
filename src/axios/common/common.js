@@ -10,7 +10,9 @@ export const all = 99; //上传页面list中下拉默认传值99
 // export const userCert = localStorage.getItem('userInfo'); // 接口user信息
 // export const accessToken = localStorage.getItem('accessInfo'); // 接口accesstoken信息
 
-export const apiUrl = 'http://115.28.203.39:9090/api/'; // 开发版接口地址
+// export const apiUrl = 'http://115.28.203.39:9090/api/'; // 开发版接口地址
+// export const apiUrl = 'http://47.94.137.232:8090/api';// 开发版接口地址
+export const apiUrl = "/api/"
 export const apiUpload = 'Request/Upload' //上传Excel接口
 export const apiMedia = 'Media/Upload' // 上传图片接口
 export const imgUrl = 'http://115.28.203.39:9091/Image/' // 图片路径

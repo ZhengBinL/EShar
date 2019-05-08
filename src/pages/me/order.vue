@@ -53,7 +53,6 @@
 
 <script>
   import orderItem from './orderItem'
- import axios from 'axios'
   export default {
     name: 'order',
     components: {
@@ -62,76 +61,19 @@
     data() {
       return {
         selected: '1',
-        orderArry:[],
-        data: [
-          {
-            id: 1,
-            title: '贵州遨游胜率九点专营',
-            type: 1,//1--代付款，2--待处理，3--带出行，4--待评价，5--退款/售后 ，主要后端怎么返回
-            hotel: '大同浩海国际九点',
-            standard: '标准间B-标准间B（酒店开具发票）[预定实惠]优惠政策',
-            checkInTime: '2019-03-16',
-            leaveTime: '2019-03-17',
-            price: '124.99',
-            totalPrice: '124.99'
-          },
-          {
-            id: 2,
-            title: '贵州遨游胜率九点专营2',
-            type: 2,//1--代付款，2--待处理，3--带出行，4--待评价，5--退款/售后 ，主要后端怎么返回
-            hotel: '大同浩海国际九点2',
-            standard: '标准间B1-标准间B（酒店开具发票）[预定实惠]优惠政策',
-            checkInTime: '2019-03-18',
-            leaveTime: '2019-03-19',
-            price: '136.22',
-            totalPrice: '136.99'
-          },
-          {
-            id: 3,
-            title: '贵州遨游胜率九点专营3',
-            type: 3,//1--代付款，2--待处理，3--带出行，4--待评价，5--退款/售后 ，主要后端怎么返回
-            hotel: '大同浩海国际九点3',
-            standard: '标准间B1-标准间B（酒店开具发票）[预定实惠]优惠政策',
-            checkInTime: '2019-03-18',
-            leaveTime: '2019-03-19',
-            price: '136.22',
-            totalPrice: '136.99'
-          },
-          {
-            id: 4,
-            title: '贵州遨游胜率九点专营4',
-            type: 4,//1--代付款，2--待处理，3--带出行，4--待评价，5--退款/售后 ，主要后端怎么返回
-            hotel: '大同浩海国际九点4',
-            standard: '标准间B1-标准间B（酒店开具发票）[预定实惠]优惠政策',
-            checkInTime: '2019-03-18',
-            leaveTime: '2019-03-19',
-            price: '136.22',
-            totalPrice: '136.99'
-          },
-          {
-            id: 5,
-            title: '贵州遨游胜率九点专营5',
-            type: 5,//1--代付款，2--待处理，3--带出行，4--待评价，5--退款/售后 ，主要后端怎么返回
-            hotel: '大同浩海国际九点5',
-            standard: '标准间B1-标准间B（酒店开具发票）[预定实惠]优惠政策',
-            checkInTime: '2019-03-18',
-            leaveTime: '2019-03-19',
-            price: '136.22',
-            totalPrice: '136.99'
-          }
-        ]
+        orderArry:[]
       }
     },
     mounted(){
-      this.initList()
+      // this.initList()
     },
     methods: {
       //获取我的订单列表
       initList(){
         let url = '/api/ordersList?user_id=4'
-        axios.get(url).then((res)=>{
+        $http.get(url).then((res)=>{
           if(res.status == 200){
-            console.log(res,'ordersList')
+            // console.log(res,'ordersList')
             let orderList  = res.data
             this.orderArry  = orderList.data
           }
@@ -139,7 +81,7 @@
       },
       // 切换点击事件
       clickItem() {
-        console.log(this.selected); // 这个currentTab就是实时更新的当前tab
+        // console.log(this.selected); // 这个currentTab就是实时更新的当前tab
       }
     }
   }
